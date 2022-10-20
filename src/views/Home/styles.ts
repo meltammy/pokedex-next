@@ -16,7 +16,7 @@ export const MainContainer = styled.div<PokeballProps>`
   transition: 0.7s;
   min-height: ${({ open }) => (open ? '85vh' : '0')};
   height: ${({ open }) => (open ? 'fit-content' : '0vh')};
-  background-color: ${({ open }) => (open ? 'rgb(2,0,36)' : 'white')};
+  opacity: ${({ open }) => (open ? 1 : 0.1)};
 
   background: radial-gradient(circle, #1d1d1d 0%, #000 80%);
 
@@ -38,6 +38,10 @@ export const MainContainer = styled.div<PokeballProps>`
     max-width: 35rem;
     text-align: center;
     display: flex;
+
+    @media (max-width: 760px) {
+      max-width: 20rem;
+    }
   }
 
   h3 {
@@ -50,7 +54,16 @@ export const MainContainer = styled.div<PokeballProps>`
     }
 
     svg {
-      margin: 2px 8px 0 8px;
+      margin: 2px 0.5rem 0 0.5rem;
+    }
+
+    @media (max-width: 360px) {
+      font-size: 1rem;
+
+      svg {
+        width: 1rem;
+        margin: 0px 0.5rem 0 0.5rem;
+      }
     }
   }
 
@@ -82,6 +95,7 @@ export const MainContainer = styled.div<PokeballProps>`
 
   @media (max-width: 768px) {
     min-height: ${({ open }) => (open ? '87vh' : '0')};
+    padding: ${({ open }) => (open ? '4rem 1rem 3rem 1rem' : '0')};
   }
 `
 
@@ -93,7 +107,7 @@ export const Header = styled.div<PokeballProps>`
   height: ${({ open }) => (open ? '15vh' : '50vh')};
   border-bottom: 1rem black solid;
   transition: 0.7s;
-  @media (max-width: 768px) {
+  @media (max-width: 760.5rem) {
     height: ${({ open }) => (open ? '13vh' : '50vh')};
   }
 `
@@ -118,6 +132,7 @@ export const PokeButton = styled.button<PokeballProps>`
   transition: 0.7s;
   outline: none;
   padding: 0;
+  z-index: 9999;
 
   span {
     display: ${({ open }) => (open ? 'none' : 'block')};
@@ -145,7 +160,7 @@ export const ButtonDetail = styled.div`
   height: 100%;
   border-radius: 100px;
   box-shadow: inset 0px 0 16px 2px #00000066;
-  border: 8px #00000012 solid;
+  border: 0.5rem #00000012 solid;
   display: flex;
 
   span {

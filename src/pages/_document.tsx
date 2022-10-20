@@ -1,4 +1,7 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
+import React from 'react'
+
 class WebDocument extends Document {
   render() {
     return (
@@ -21,4 +24,30 @@ class WebDocument extends Document {
     )
   }
 }
+
+WebDocument.getInitialProps = async ctx => {
+  const styledComponentsSheet = new ServerStyleSheet()
+  const originalRenderPage = ctx.renderPage
+
+  try {
+    ctx.renderPage = () =>
+      originalRenderPage({
+        enhanceApp: App => props =>
+          styledComponentsSheet.collectStyles(<App {...props} />),
+      })
+
+    const initialProps = await Document.getInitialProps(ctx)
+
+    return {
+      ...initialProps,
+      styles: [
+        ...React.Children.toArray(initialProps.styles),
+        styledComponentsSheet.getStyleElement(),
+      ],
+    }
+  } finally {
+    styledComponentsSheet.seal()
+  }
+}
+
 export default WebDocument

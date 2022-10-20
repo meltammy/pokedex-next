@@ -1,21 +1,18 @@
-import type { NextPage } from 'next'
 import { useGetUserQuery } from '@/lib/api/getPokemons'
-import { PokemonCard } from '@/Components'
+import { ListContainer, PokemonCard } from '@/Components'
 import { formatPokemons } from '@/lib/utils/formatPokemons'
 
-const Home: NextPage = () => {
+export function PokemonsListView() {
   const { data } = useGetUserQuery()
 
   if (!data) return <></>
 
   const pokemons = formatPokemons(data)
   return (
-    <div>
+    <ListContainer>
       {pokemons.map(item => (
         <PokemonCard key={item.id} {...item} />
       ))}
-    </div>
+    </ListContainer>
   )
 }
-
-export default Home

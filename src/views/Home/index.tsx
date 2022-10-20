@@ -10,6 +10,7 @@ import {
 } from './styles'
 import { GitHubIcon } from '@/Components/Icons/GitHubIcon'
 import { HeartIcon } from '@/Components/Icons/HeartIcon'
+import { ExternalLinks, Routes } from '@/src/routes'
 
 export function HomeView() {
   const [open, setOpen] = useState(false)
@@ -26,19 +27,19 @@ export function HomeView() {
       <MainContainer open={open}>
         <h1>Hello! Welcome to my pokedex</h1>
         <div>
-          <h3>You can check the code on this repository: </h3>
-          <a href="https://github.com/meltammy/pokedex-next">
+          <h3>You can check the code here: </h3>
+          <a href={ExternalLinks.GITHUB_REPOSITORY}>
             <GitHubIcon />
             <span>GitHub</span>
           </a>
         </div>
-        <Link href="#">Let&apos;s go to pokedex!</Link>
+        <Link href={Routes.POKEMONS_LIST}>Let&apos;s go to pokedex!</Link>
         <h3>
           Developed with <HeartIcon /> by{' '}
-          <a href="https://www.linkedin.com/in/meltammy/">Mel Tammy</a>
+          <a href={ExternalLinks.LINKEDIN}>Mel Tammy</a>
         </h3>
       </MainContainer>
-      <Footer open={open}></Footer>
+      <Footer open={open} />
     </Container>
   )
 }
