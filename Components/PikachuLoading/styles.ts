@@ -17,4 +17,5 @@ export const StaticContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: inset 0px -10px 20px -17px black;
 `
