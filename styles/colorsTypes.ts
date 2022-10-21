@@ -51,6 +51,26 @@ export const colorsTypes = {
     color: 'white',
     backgroundColor: 'darkturquoise',
   },
+  dragon: {
+    color: 'white',
+    backgroundColor: '#38b19d',
+  },
+  ghost: {
+    color: 'white',
+    backgroundColor: '#592f99',
+  },
+  dark: {
+    color: 'white',
+    backgroundColor: '#001347',
+  },
+  normal: {
+    color: 'white',
+    backgroundColor: 'darkgrey',
+  },
+  steel: {
+    color: 'white',
+    backgroundColor: '#7d879f',
+  },
   default: {
     color: 'white',
     backgroundColor: 'gray',
