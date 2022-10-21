@@ -9,19 +9,25 @@ export type GetPokemonsResult = {
         name: string
       }
     }[]
+    pokemon_v2_pokemonsprites: {
+      sprites: string
+    }[]
     __typename: 'pokemon_v2_pokemon'
   }[]
 }
 
 export const GET_POKEMONS = gql`
-  query pokemons {
-    pokemon_v2_pokemon(limit: 100) {
+  query pokemons($limit: Int, $offset: Int) {
+    pokemon_v2_pokemon(limit: $limit, offset: $offset) {
       id
       name
       pokemon_v2_pokemontypes {
         pokemon_v2_type {
           name
         }
+      }
+      pokemon_v2_pokemonsprites {
+        sprites
       }
     }
   }
