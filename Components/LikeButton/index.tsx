@@ -33,7 +33,7 @@ export function LikeButton({ id }: LikeButtonProps) {
 
   return (
     <Button isLiked={isLiked} onClick={toggleLike}>
-      <HeartIcon fill="currentColor" />
+      <HeartIcon fill="currentColor" size="24" />
     </Button>
   )
 }

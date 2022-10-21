@@ -7,9 +7,14 @@ type ButtonProps = {
 export const Button = styled.button<ButtonProps>`
   background-color: transparent;
   border: none;
-  color: ${({ isLiked }) => (isLiked ? 'red' : 'gray')};
+  color: ${({ isLiked }) => (isLiked ? 'hotpink' : 'darkgrey')};
+  padding: 0;
 
   &:hover {
-    color: red;
+    color: hotpink;
+
+    @media (max-width: 768px) {
+      color: ${({ isLiked }) => (isLiked ? 'hotpink' : 'darkgrey')};
+    }
   }
 `

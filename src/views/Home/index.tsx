@@ -9,8 +9,8 @@ import {
   MainContainer,
 } from './styles'
 import { GitHubIcon } from '@/Components/Icons/GitHubIcon'
-import { HeartIcon } from '@/Components/Icons/HeartIcon'
 import { ExternalLinks, Routes } from '@/src/routes'
+import { DevelopedBy } from '@/Components/DevelopedBy'
 
 export function HomeView() {
   const [open, setOpen] = useState(false)
@@ -34,10 +34,7 @@ export function HomeView() {
           </a>
         </div>
         <Link href={Routes.POKEMONS_LIST}>Let&apos;s go to pokedex!</Link>
-        <h3>
-          Developed with <HeartIcon /> by{' '}
-          <a href={ExternalLinks.LINKEDIN}>Mel Tammy</a>
-        </h3>
+        <DevelopedBy />
       </MainContainer>
       <Footer open={open} />
     </Container>

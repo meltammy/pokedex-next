@@ -1,14 +1,18 @@
 import { FormattedPokemon } from '@/lib/models'
 import { getColors } from '@/lib/utils/getColors'
 import Image from 'next/image'
+import { useState } from 'react'
 import { Badge } from '../Badge'
 import { LikeButton } from '../LikeButton'
 import { Container, Header } from './styles'
 
 type PokemonCardProps = FormattedPokemon
 
-export function PokemonCard({ id, name, types }: PokemonCardProps) {
+export function PokemonCard({ id, name, types, sprites }: PokemonCardProps) {
   const imageId = `${id}`.padStart(3, '0')
+  const [src, setSrc] = useState(
+    `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`
+  )
 
   return (
     <Container backgroundColor={getColors(types[0]).backgroundColor}>
@@ -17,7 +21,8 @@ export function PokemonCard({ id, name, types }: PokemonCardProps) {
         width={300}
         height={300}
         alt={name}
-        src={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`}
+        src={src}
+        onError={() => setSrc(sprites || '')}
       />
       <small>Nº{id}</small>
       <Header>

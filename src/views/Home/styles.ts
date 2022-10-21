@@ -44,29 +44,6 @@ export const MainContainer = styled.div<PokeballProps>`
     }
   }
 
-  h3 {
-    display: flex;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-
-    a {
-      margin-left: 0.5rem;
-    }
-
-    svg {
-      margin: 2px 0.5rem 0 0.5rem;
-    }
-
-    @media (max-width: 360px) {
-      font-size: 1rem;
-
-      svg {
-        width: 1rem;
-        margin: 0px 0.5rem 0 0.5rem;
-      }
-    }
-  }
-
   > a {
     border: 1px white solid;
     padding: 0.5rem 1rem;
