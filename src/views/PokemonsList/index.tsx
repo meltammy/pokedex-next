@@ -22,7 +22,7 @@ export function PokemonsListView() {
   const pokemons = formatPokemons(data)
 
   function handleFetchMore() {
-    fetchMore({ variables: { offset: pokemons.length } })
+    fetchMore({ variables: { offset: pokemons.length, limit: 52 } })
   }
 
   return (
