@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from '@/Components'
 import {
   ButtonDetail,
@@ -11,9 +11,17 @@ import {
 import { GitHubIcon } from '@/Components/Icons/GitHubIcon'
 import { ExternalLinks, Routes } from '@/src/routes'
 import { DevelopedBy } from '@/Components/DevelopedBy'
+import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
+import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 
 export function HomeView() {
   const [open, setOpen] = useState(false)
+  const { dispatchSimpleEvent } = useAmplitude()
+
+  useEffect(() => {
+    dispatchSimpleEvent(AmplitudeEventsName.loadedHome)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Container open={open}>
