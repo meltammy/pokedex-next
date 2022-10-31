@@ -1,7 +1,9 @@
-import { GetPokemonsResult } from '@/lib/api/getPokemons'
+import { GetPokemonsResult } from '../models/GetPokemonsResult'
 import { FormattedPokemon } from '@/lib/models'
 
-export function formatPokemons(data: GetPokemonsResult): FormattedPokemon[] {
+export function formatPokemons(data?: GetPokemonsResult): FormattedPokemon[] {
+  if (!data) return []
+
   return data.pokemon_v2_pokemon.map(item => ({
     name: item.name,
     id: item.id,

@@ -1,26 +1,27 @@
-import { useGetPokemonsQuery } from '@/lib/api/getPokemons'
 import { ListContainer, PokemonCard } from '@/Components'
 import { formatPokemons } from '@/lib/utils/formatPokemons'
 import { InfiniteScroll } from '@/Components/InfiniteScroll'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
 import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 import { MainLayout } from '@/src/layouts/MainLayout'
-import { hasMoreVar } from '@/lib/graphql/apolloClient'
-import { SearchInput } from '@/Components/SearchInput'
-import { useDebouncedSearchInput } from '@/lib/hooks/useDebouncedInput'
-import { Container, LoadingContainer } from './styles'
+import { useGetPokemonsByIdsQuery } from '@/lib/api/getPokemonsById'
 import { PikachuLoading } from '@/Components/PikachuLoading'
+import { LoadingContainer } from './styles'
 
-export function PokemonsListView() {
+export function FavoritesView() {
   const { dispatchSimpleEvent } = useAmplitude()
+  const likesFromStorage =
+    typeof window === 'undefined' ? '[]' : localStorage.getItem('likes')
+  const [likedPokemons, setLikedPokemons] = useState<number[]>(
+    JSON.parse(likesFromStorage || '[]')
+  )
 
-  const { debouncedValue: searchName, bind } = useDebouncedSearchInput('')
-  const { data, fetchMore, loading } = useGetPokemonsQuery({
+  const { data, fetchMore, loading } = useGetPokemonsByIdsQuery({
     variables: {
-      limit: 20,
-      cacheType: 'allPokemons',
-      name: searchName,
+      limit: 24,
+      ids: likedPokemons,
+      cacheType: 'likedPokemons',
     },
   })
 
@@ -29,17 +30,21 @@ export function PokemonsListView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const pokemons = formatPokemons(data)
+  const pokemons = formatPokemons(data).filter(({ id }) =>
+    likedPokemons.includes(id)
+  )
 
   function handleFetchMore() {
     fetchMore({ variables: { offset: pokemons.length, limit: 52 } })
   }
 
+  function onRemoveFromLikes(id: number) {
+    const newLikedPokemons = [...likedPokemons.filter(item => item !== id)]
+    setLikedPokemons(newLikedPokemons)
+  }
+
   return (
     <MainLayout>
-      <Container>
-        <SearchInput placeholder="Buscar por nome" {...bind} />
-      </Container>
       {loading ? (
         <LoadingContainer>
           <PikachuLoading />
@@ -47,12 +52,16 @@ export function PokemonsListView() {
       ) : (
         <InfiniteScroll
           fetchMore={handleFetchMore}
-          hasMore={hasMoreVar()}
+          hasMore={likedPokemons.length !== pokemons.length}
           initialPage={0}
         >
           <ListContainer>
             {pokemons.map(item => (
-              <PokemonCard key={item.id} {...item} />
+              <PokemonCard
+                key={item.id}
+                {...item}
+                onRemoveFromLikes={() => onRemoveFromLikes(item.id)}
+              />
             ))}
           </ListContainer>
         </InfiniteScroll>

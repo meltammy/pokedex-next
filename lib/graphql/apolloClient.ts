@@ -1,9 +1,24 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import {
+  ApolloClient,
+  FieldFunctionOptions,
+  InMemoryCache,
+  makeVar,
+} from '@apollo/client'
 
 const paginatedPokemonsPolicy = {
-  keyArgs: ['order'],
+  keyArgs: ['$cacheType', '$name'],
 
-  merge(existing = [], incoming: unknown[]) {
+  merge(
+    existing = [],
+    incoming: unknown[],
+    fieldOptions: FieldFunctionOptions<
+      Record<string, unknown>,
+      Record<string, unknown>
+    >
+  ) {
+    const limit = Number(fieldOptions.args?.limit)
+    hasMoreVar(Boolean(incoming.length === limit))
+
     return [...existing, ...incoming]
   },
 }
@@ -23,3 +38,5 @@ export const apolloClient = new ApolloClient({
     },
   }),
 })
+
+export const hasMoreVar = makeVar(true)
