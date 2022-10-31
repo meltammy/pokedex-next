@@ -1,12 +1,13 @@
 import { useState } from 'react'
-import { HeartIcon } from '../Icons/HeartIcon'
+import { HeartIcon } from '../Icons/Heart'
 import { Button } from './styles'
 
 type LikeButtonProps = {
   id: number
+  onRemoveFromLikes?: (id: number) => void
 }
 
-export function LikeButton({ id }: LikeButtonProps) {
+export function LikeButton({ id, onRemoveFromLikes }: LikeButtonProps) {
   const likedPokemons = localStorage.getItem('likes')
   const [isLiked, setIsLiked] = useState(
     !!likedPokemons?.includes(id.toString())
@@ -23,6 +24,7 @@ export function LikeButton({ id }: LikeButtonProps) {
       newLikedPokemons = likedPokemonsParsed.filter(
         likedPokemonId => likedPokemonId !== id
       )
+      onRemoveFromLikes && onRemoveFromLikes(id)
     } else {
       newLikedPokemons = [...likedPokemonsParsed, id]
     }
@@ -33,7 +35,7 @@ export function LikeButton({ id }: LikeButtonProps) {
 
   return (
     <Button isLiked={isLiked} onClick={toggleLike}>
-      <HeartIcon fill="currentColor" size="24" />
+      <HeartIcon fill="currentColor" stroke="transparent" size="24" />
     </Button>
   )
 }

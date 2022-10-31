@@ -1,5 +1,6 @@
 export enum Routes {
-  POKEMONS_LIST = 'lista-pokemons',
+  POKEMONS_LIST = '/lista-pokemons',
+  FAVORITES = '/favoritos',
 }
 
 export enum ExternalLinks {

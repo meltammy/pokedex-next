@@ -1,30 +1,23 @@
-import styled, { keyframes } from 'styled-components'
-
-const pikachuRunning = keyframes`
-  from {
-    left: 40vw;
-  }
-
-  to {
-    left: 65vw;
-  }
-`
+import styled from 'styled-components'
 
 export const LoadingContainer = styled.div`
-  background: linear-gradient(
-    0deg,
-    #000000 2%,
-    green 48.3%,
-    orange 28%,
-    #4242d2 100%
-  );
-  height: 100vh;
-  display: flex;
-  align-items: center;
+  width: fit-content;
+  margin: auto;
+  margin-top: 50vh;
+`
 
-  > div {
-    position: relative;
-    width: fit-content;
-    animation: ${pikachuRunning} 9s infinite;
+export const Container = styled.section`
+  max-width: 880px;
+  width: 100%;
+  margin: auto;
+  padding-top: 2rem;
+
+  @media (max-width: 960px) {
+    max-width: 720px;
+    padding-left: 2rem;
+  }
+
+  @media (max-width: 515px) {
+    padding-left: 1rem;
   }
 `

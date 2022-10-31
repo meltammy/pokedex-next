@@ -1,13 +1,30 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  place-content: flex-start;
-  justify-content: center;
-
+  width: fit-content;
+  grid-area: list;
   max-width: 1080px;
-  gap: 1rem;
-  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 1rem;
   margin: auto;
+  padding: 2rem;
+
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 740px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 740px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 515px) {
+    grid-template-columns: repeat(1, 1fr);
+    padding: 1rem;
+    width: 100%;
+  }
 `

@@ -1,5 +1,5 @@
 import { ExternalLinks } from '@/src/routes'
-import { HeartIcon } from '../Icons/HeartIcon'
+import { HeartIcon } from '../Icons/Heart'
 import { Container } from './styles'
 
 export function DevelopedBy() {

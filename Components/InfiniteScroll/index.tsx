@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useRef, useState } from 'react'
 import { useObserverInfiniteScroll } from './observerInfiniteScroll'
 
 import { PikachuLoading } from '../PikachuLoading'
+import { ButtonScrollBackToTop } from '../ButtonScrollBackToTop'
 
 type InfiniteScrollProps = {
   children: ReactNode
@@ -34,6 +35,7 @@ export function InfiniteScroll({
     <>
       {children}
       {hasMore && <div ref={ref}>{loader}</div>}
+      <ButtonScrollBackToTop />
     </>
   )
 }

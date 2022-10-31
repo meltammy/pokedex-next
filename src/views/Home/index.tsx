@@ -8,7 +8,7 @@ import {
   Container,
   MainContainer,
 } from './styles'
-import { GitHubIcon } from '@/Components/Icons/GitHubIcon'
+import { GitHubIcon } from '@/Components/Icons/GitHub'
 import { ExternalLinks, Routes } from '@/src/routes'
 import { DevelopedBy } from '@/Components/DevelopedBy'
 import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
