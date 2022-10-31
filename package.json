@@ -34,8 +34,5 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.7.1",
     "typescript": "4.8.3"
-  },
-  "resolutions": {
-    "@types/react": "17.0.11"
   }
 }
