@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-import { PokemonsListView } from '../views/PokemonsList'
+import { PokemonsListView } from '@/src/views/PokemonsList'
 
 const PokemonList: NextPage = () => {
   return <PokemonsListView />
