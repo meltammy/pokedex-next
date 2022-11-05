@@ -41,7 +41,7 @@ export function HomeView() {
             <span>GitHub</span>
           </a>
         </div>
-        <Link href={Routes.POKEMONS_LIST}>Let&apos;s go to pokedex!</Link>
+        <Link href={Routes.POKEMONS}>Let&apos;s go to pokedex!</Link>
         <DevelopedBy />
       </MainContainer>
       <Footer open={open} />

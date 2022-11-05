@@ -9,7 +9,7 @@ export const Button = styled.button<ButtonProps>`
   border: none;
   color: ${({ isLiked }) => (isLiked ? 'hotpink' : 'darkgrey')};
   padding: 0;
-
+  grid-area: like;
   @media (max-width: 515px) {
     color: ${({ isLiked }) => (isLiked ? 'hotpink' : 'white')};
   }

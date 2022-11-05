@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react'
 import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
 import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 import { MainLayout } from '@/src/layouts/MainLayout'
-import { useGetPokemonsByIdsQuery } from '@/lib/api/getPokemonsById'
 import { PikachuLoading } from '@/Components/PikachuLoading'
 import { LoadingContainer } from './styles'
+import { useGetPokemonsByIdsQuery } from '@/lib/graphql/queries/getPokemonsById'
 
 export function FavoritesView() {
   const { dispatchSimpleEvent } = useAmplitude()
@@ -19,7 +19,6 @@ export function FavoritesView() {
 
   const { data, fetchMore, loading } = useGetPokemonsByIdsQuery({
     variables: {
-      limit: 24,
       ids: likedPokemons,
       cacheType: 'likedPokemons',
     },

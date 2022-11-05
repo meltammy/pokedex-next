@@ -1,4 +1,4 @@
-import { useGetPokemonsQuery } from '@/lib/api/getPokemons'
+import { useGetPokemonsQuery } from '@/lib/graphql/queries/getPokemons'
 import { ListContainer, PokemonCard } from '@/Components'
 import { formatPokemons } from '@/lib/utils/formatPokemons'
 import { InfiniteScroll } from '@/Components/InfiniteScroll'

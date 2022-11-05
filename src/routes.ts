@@ -1,5 +1,6 @@
 export enum Routes {
-  POKEMONS_LIST = '/pokemons',
+  POKEMONS = '/pokemons',
+  POKEMON_DETAIL = '/pokemon/',
   FAVORITES = '/favoritos',
 }
 

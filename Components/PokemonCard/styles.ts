@@ -4,7 +4,7 @@ type ContainerProps = {
   backgroundColor: string
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.a<ContainerProps>`
   display: grid;
   grid-template-areas:
     'image image image'
@@ -42,10 +42,6 @@ export const Container = styled.div<ContainerProps>`
   > div {
     grid-area: types;
     height: fit-content;
-  }
-
-  > button {
-    grid-area: like;
   }
 
   @media (max-width: 515px) {

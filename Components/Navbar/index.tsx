@@ -6,7 +6,7 @@ import { StyledNavbar, Container } from './styles'
 
 const navLinks = [
   {
-    href: Routes.POKEMONS_LIST,
+    href: Routes.POKEMONS,
     children: 'Pokemons',
   },
   {
