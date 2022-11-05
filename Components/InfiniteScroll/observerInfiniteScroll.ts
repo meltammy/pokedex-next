@@ -1,5 +1,3 @@
-import { useEffect } from 'react'
-
 type ObserverInfiniteScroll = (
   ref: React.MutableRefObject<null>,
   setPage: React.Dispatch<React.SetStateAction<number>>
@@ -11,29 +9,23 @@ const options = {
   threshold: 0.5,
 }
 
-export const useObserverInfiniteScroll: ObserverInfiniteScroll = (
+/**
+ * @description Cria um "observador" que dispara uma função
+ * toda vez que o elemento correspondente à ref aparece na tela.
+ */
+export const observerInfiniteScroll: ObserverInfiniteScroll = (
   ref,
   setPage
 ) => {
-  useEffect(() => {
-    const observer = new IntersectionObserver(entities => {
-      const target = entities[0]
-      if (target.isIntersecting) {
-        setPage(prevPage => prevPage + 1)
-      }
-    }, options)
+  const observer = new IntersectionObserver(entities => {
+    const target = entities[0]
 
-    const refCurrent = ref.current
-
-    if (refCurrent) {
-      observer.observe(refCurrent)
+    if (target.isIntersecting) {
+      setPage(e => e + 1)
     }
+  }, options)
 
-    return () => {
-      if (refCurrent) {
-        observer.unobserve(refCurrent)
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  if (ref.current) {
+    observer.observe(ref.current)
+  }
 }

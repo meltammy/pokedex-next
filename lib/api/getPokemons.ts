@@ -9,7 +9,7 @@ export const GET_POKEMONS = gql`
     pokemon_v2_pokemon(
       limit: $limit
       offset: $offset
-      where: { name: { _iregex: $name } }
+      where: { name: { _iregex: $name }, id: { _lte: 906 } }
     ) {
       id
       name

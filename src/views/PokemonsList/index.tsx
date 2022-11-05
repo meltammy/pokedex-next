@@ -2,23 +2,24 @@ import { useGetPokemonsQuery } from '@/lib/api/getPokemons'
 import { ListContainer, PokemonCard } from '@/Components'
 import { formatPokemons } from '@/lib/utils/formatPokemons'
 import { InfiniteScroll } from '@/Components/InfiniteScroll'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
 import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 import { MainLayout } from '@/src/layouts/MainLayout'
-import { hasMoreVar } from '@/lib/graphql/apolloClient'
 import { SearchInput } from '@/Components/SearchInput'
 import { useDebouncedSearchInput } from '@/lib/hooks/useDebouncedInput'
 import { Container, LoadingContainer } from './styles'
 import { PikachuLoading } from '@/Components/PikachuLoading'
 
+const firstLimit = 20
+
 export function PokemonsListView() {
   const { dispatchSimpleEvent } = useAmplitude()
-
+  const [hasMore, setHasMore] = useState(true)
   const { debouncedValue: searchName, bind } = useDebouncedSearchInput('')
   const { data, fetchMore, loading } = useGetPokemonsQuery({
     variables: {
-      limit: 20,
+      limit: firstLimit,
       cacheType: 'allPokemons',
       name: searchName,
     },
@@ -31,8 +32,16 @@ export function PokemonsListView() {
 
   const pokemons = formatPokemons(data)
 
+  useEffect(() => {
+    setHasMore(pokemons.length >= firstLimit)
+  }, [pokemons])
+
   function handleFetchMore() {
-    fetchMore({ variables: { offset: pokemons.length, limit: 52 } })
+    fetchMore({ variables: { offset: pokemons.length, limit: 52 } }).then(
+      ({ data }) => {
+        setHasMore(Boolean(data.pokemon_v2_pokemon.length))
+      }
+    )
   }
 
   return (
@@ -47,7 +56,7 @@ export function PokemonsListView() {
       ) : (
         <InfiniteScroll
           fetchMore={handleFetchMore}
-          hasMore={hasMoreVar()}
+          hasMore={hasMore}
           initialPage={0}
         >
           <ListContainer>

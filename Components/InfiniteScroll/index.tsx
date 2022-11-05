@@ -1,8 +1,8 @@
 import { ReactNode, useEffect, useRef, useState } from 'react'
-import { useObserverInfiniteScroll } from './observerInfiniteScroll'
 
 import { PikachuLoading } from '../PikachuLoading'
 import { ButtonScrollBackToTop } from '../ButtonScrollBackToTop'
+import { observerInfiniteScroll } from './observerInfiniteScroll'
 
 type InfiniteScrollProps = {
   children: ReactNode
@@ -24,12 +24,14 @@ export function InfiniteScroll({
   const ref = useRef(null)
   const [page, setPage] = useState(initialPage)
 
-  useObserverInfiniteScroll(ref, setPage)
-
   useEffect(() => {
     page > initialPage && fetchMore()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page])
+
+  useEffect(() => {
+    observerInfiniteScroll(ref, setPage)
+  }, [children])
 
   return (
     <>

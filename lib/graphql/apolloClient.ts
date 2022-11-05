@@ -7,7 +7,6 @@ import {
 
 const paginatedPokemonsPolicy = {
   keyArgs: ['$cacheType', '$name'],
-
   merge(
     existing = [],
     incoming: unknown[],
