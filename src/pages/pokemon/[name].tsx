@@ -1,31 +1,21 @@
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { PokemonDetailView } from '@/src/views/PokemonDetail'
 import { fetchPokemonDetail } from '@/lib/graphql/queries/getPokemonDetails'
 import { ComponentProps } from 'react'
 import { formatPokemonDetail } from '@/lib/utils/formatPokemons'
 import { SplashScreen } from '@/src/views/SplashScreen'
-import { fetchPokemonsName } from '@/lib/graphql/queries/getPokemonsName'
 
 type PageProps = ComponentProps<typeof PokemonDetailView>
+type PageQuery = { name: string }
 
 const PokemonList: NextPage<PageProps> = props => {
   if (!props.id) return <SplashScreen />
   return <PokemonDetailView {...props} />
 }
 
-export const getStaticPaths = async () => {
-  const response = await fetchPokemonsName()
-
-  const paths = response.data.pokemon_v2_pokemon.map(({ name }) => {
-    return {
-      params: {
-        name,
-      },
-    }
-  })
-
-  return { paths, fallback: true }
+export const getStaticPaths: GetStaticPaths<PageQuery> = async () => {
+  return { paths: [], fallback: true }
 }
 
 export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
