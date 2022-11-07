@@ -37,5 +37,5 @@ function getColor(progress: number) {
   if (progress <= 20) return 'red'
   if (progress < 40) return 'orange'
   if (progress < 60) return '#fff200'
-  if (progress > 60) return 'yellowGreen'
+  if (progress >= 60) return 'yellowGreen'
 }

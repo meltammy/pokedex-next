@@ -1,8 +1,5 @@
 import { gql, QueryHookOptions, useQuery } from '@apollo/client'
-import {
-  GetPokemons,
-  GetPokemonsVariables,
-} from '../../models/GetPokemonsResult'
+import { GetPokemons, GetPokemonsVariables } from '../../models/GetPokemons'
 import { defaultPokemonFragment } from '../fragments/pokemon'
 
 export const GET_POKEMONS = gql`

@@ -1,4 +1,4 @@
-import { GetPokemons } from '../models/GetPokemonsResult'
+import { GetPokemons } from '../models/GetPokemons'
 import {
   FormattedPokemon,
   FormattedPokemonDetail,

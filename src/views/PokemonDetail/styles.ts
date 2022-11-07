@@ -66,6 +66,9 @@ export const TypesContainer = styled.div`
   position: absolute;
   top: 8rem;
   left: 1rem;
+  > span {
+    margin-right: 0.5rem;
+  }
 `
 export const Id = styled(OutlinedText)`
   position: fixed;
@@ -73,4 +76,20 @@ export const Id = styled(OutlinedText)`
   top: 8rem;
   right: 1rem;
   height: 5rem;
+`
+
+export const PrevArrow = styled.a`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 12rem;
+`
+
+export const NextArrow = styled.a`
+  width: 2rem;
+  height: 2rem;
+  position: absolute;
+  top: 12rem;
+  right: 0;
+  rotate: 180deg;
 `
