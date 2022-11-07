@@ -10,4 +10,6 @@ export const Badge = styled.span<BadgeProps>`
   color: ${({ color }) => color};
   padding: 0.2rem 0.5rem;
   border-radius: 6rem;
+  height: fit-content;
+  width: fit-content;
 `

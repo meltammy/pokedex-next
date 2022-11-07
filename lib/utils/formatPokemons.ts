@@ -10,20 +10,18 @@ import { GetPokemonEvolution } from '../models/GetPokemonEvolution'
 export function formatPokemons(data?: GetPokemons): FormattedPokemon[] {
   if (!data) return []
 
-  return data.pokemon_v2_pokemon.map(item => {
-    const imageId = `${item.id}`.padStart(3, '0')
+  return data.pokemon_v2_pokemon.map(
+    ({ pokemon_v2_pokemontypes, pokemon_v2_pokemonsprites, ...res }) => {
+      const imageId = formatId(res.id)
 
-    return {
-      name: item.name,
-      id: item.id,
-      types: item.pokemon_v2_pokemontypes.map(
-        type => type.pokemon_v2_type.name
-      ),
-      sprites: JSON.parse(item.pokemon_v2_pokemonsprites[0].sprites)
-        .front_default,
-      image: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`,
+      return {
+        ...res,
+        types: pokemon_v2_pokemontypes.map(type => type.pokemon_v2_type.name),
+        sprites: JSON.parse(pokemon_v2_pokemonsprites[0].sprites).front_default,
+        image: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`,
+      }
     }
-  })
+  )
 }
 
 export function formatPokemonDetail({
@@ -37,7 +35,7 @@ export function formatPokemonDetail({
     ...res
   } = pokemon_v2_pokemon[0]
 
-  const imageId = `${res.id}`.padStart(3, '0')
+  const imageId = formatId(res.id)
 
   return {
     ...res,
@@ -47,10 +45,40 @@ export function formatPokemonDetail({
       ({ pokemon_v2_ability: ability }) => ability.name
     ),
     stats: pokemon_v2_pokemonstats.map(item => ({
-      [item.pokemon_v2_stat.name]: item.base_stat,
+      [formatStatsLabel(item.pokemon_v2_stat.name)]: item.base_stat,
     })),
     image: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`,
   }
+}
+
+const labelsToReplace = [
+  {
+    includes: 'special',
+    replace: 'sp.',
+  },
+  {
+    includes: '-attack',
+    replace: ' atk',
+  },
+  {
+    includes: '-defense',
+    replace: ' def',
+  },
+  {
+    includes: 'hp',
+    replace: 'HP',
+  },
+]
+
+function formatStatsLabel(label: string) {
+  let newLabel = label
+
+  labelsToReplace.forEach(({ includes, replace }) => {
+    if (newLabel.includes(includes))
+      newLabel = newLabel.replace(includes, replace)
+  })
+
+  return newLabel
 }
 
 export function formatPokemonEvolution({
@@ -59,4 +87,8 @@ export function formatPokemonEvolution({
   return {
     evolutions: pokemon_v2_evolutionchain[0].pokemon_v2_pokemonspecies,
   }
+}
+
+export function formatId(id: number) {
+  return `${id}`.padStart(3, '0')
 }
