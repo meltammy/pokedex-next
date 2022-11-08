@@ -47,7 +47,7 @@ export function formatPokemonDetail({
     stats: pokemon_v2_pokemonstats.map(item => ({
       [formatStatsLabel(item.pokemon_v2_stat.name)]: item.base_stat,
     })),
-    image: `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`,
+    image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imageId}.png`,
   }
 }
 

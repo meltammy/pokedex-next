@@ -10,30 +10,60 @@ export const Container = styled.div<ContainerProps>`
     ${({ backgroundColor }) => backgroundColor} 0%,
     transparent 68%
   ) !important;
+  box-shadow: inset 0px 12px 11px -11px #00000042;
 
-  max-width: 1080px;
-  margin: auto;
-  display: grid;
-  grid-template-areas: 'name . like' 'image image image' 'detail detail detail';
-  grid-template-columns: auto auto 2rem;
-  grid-template-rows: 3rem 12rem auto;
-  padding: 2rem 0;
-  min-height: 92vh;
-  overflow-x: hidden;
+  > section {
+    max-width: 1080px;
+    margin: auto;
+    display: grid;
+    grid-template-areas: 'name . like' 'image image image' 'detail detail detail';
+    grid-template-columns: auto auto 2rem;
+    grid-template-rows: 3rem 12rem auto;
+    padding: 2rem 0;
+    min-height: 92vh;
+    overflow-x: hidden;
 
-  > h1 {
-    grid-area: name;
-    text-transform: capitalize;
-    font-weight: 600;
-    height: fit-content;
-    margin: 0;
-    margin-left: 1rem;
-    color: white;
-    text-shadow: 0px 0px 20px #00000066;
+    > h1 {
+      grid-area: name;
+      text-transform: capitalize;
+      font-weight: 600;
+      height: fit-content;
+      margin: 0;
+      margin-left: 1rem;
+      color: white;
+      text-shadow: 0px 0px 20px #00000066;
+    }
+
+    > button {
+      margin-right: 1rem;
+    }
   }
 
-  > button {
-    margin-right: 1rem;
+  @media (min-width: 1080px) {
+    background: linear-gradient(
+      ${({ backgroundColor }) => backgroundColor} 0%,
+      transparent 100%
+    ) !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+
+    > section {
+      grid-template-areas:
+        'name  name . like'
+        '. . . .'
+        'image id detail detail'
+        'types types detail detail';
+      margin: 0;
+      grid-template-columns: 10rem 21rem auto 2rem;
+      padding: 2rem 5rem;
+      grid-template-rows: 3rem 2rem 15rem 2rem;
+
+      > h1 {
+        display: none;
+      }
+    }
   }
 `
 
@@ -43,6 +73,9 @@ export const ImageContainer = styled.div`
   grid-area: image;
   margin: auto;
   z-index: 1;
+  @media (min-width: 1080px) {
+    width: 15rem;
+  }
 `
 
 export const DataContainer = styled.div`
@@ -59,6 +92,14 @@ export const DataContainer = styled.div`
   border-top-left-radius: 2rem;
 
   box-shadow: 0px -11px 6px #0000001f;
+
+  @media (min-width: 1080px) {
+    min-width: 22rem;
+    position: initial;
+    border-radius: 2rem;
+    padding: 2rem;
+    height: fit-content;
+  }
 `
 
 export const TypesContainer = styled.div`
@@ -69,13 +110,26 @@ export const TypesContainer = styled.div`
   > span {
     margin-right: 0.5rem;
   }
+
+  @media (min-width: 1080px) {
+    position: initial;
+  }
 `
 export const Id = styled(OutlinedText)`
+  grid-area: id;
+
   position: fixed;
   width: 6rem;
   top: 8rem;
   right: 1rem;
   height: 5rem;
+
+  @media (min-width: 1080px) {
+    position: initial;
+    align-self: flex-end;
+    width: 12rem;
+    height: 10rem;
+  }
 `
 
 export const PrevArrow = styled.a`
@@ -83,6 +137,10 @@ export const PrevArrow = styled.a`
   height: 2rem;
   position: absolute;
   top: 12rem;
+
+  @media (min-width: 1080px) {
+    position: initial;
+  }
 `
 
 export const NextArrow = styled.a`
@@ -92,4 +150,21 @@ export const NextArrow = styled.a`
   top: 12rem;
   right: 0;
   rotate: 180deg;
+
+  @media (min-width: 1080px) {
+    position: initial;
+  }
+`
+
+export const Name = styled(OutlinedText)`
+  opacity: 0;
+
+  @media (min-width: 1080px) {
+    opacity: 1;
+    grid-area: name;
+    width: 55rem;
+    margin-left: -24rem;
+    text-transform: uppercase;
+    height: 8rem;
+  }
 `

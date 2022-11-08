@@ -25,7 +25,7 @@ export const colorsTypes = {
   },
   electric: {
     color: 'white',
-    backgroundColor: 'gold',
+    backgroundColor: '#dfc500',
   },
   ground: {
     color: 'white',

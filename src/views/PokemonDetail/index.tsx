@@ -16,6 +16,7 @@ import {
   DataContainer,
   Id,
   ImageContainer,
+  Name,
   NextArrow,
   PrevArrow,
   TypesContainer,
@@ -66,8 +67,6 @@ export function PokemonDetailView({
   return (
     <MainLayout>
       <Container backgroundColor={getColors(colorType[0]).backgroundColor}>
-        <h1>{name}</h1>
-
         {prevPokemonUrl && (
           <Link href={prevPokemonUrl} passHref>
             <PrevArrow>
@@ -75,6 +74,36 @@ export function PokemonDetailView({
             </PrevArrow>
           </Link>
         )}
+
+        <section>
+          <h1>{name}</h1>
+          <Name text={name} />
+
+          <Id text={formatId(id)} />
+          <LikeButton id={id} />
+          <TypesContainer>
+            {types.map(type => (
+              <Badge key={type} text={type} colors={badgeColors} />
+            ))}
+          </TypesContainer>
+          <ImageContainer id={name}>
+            <Image
+              layout="responsive"
+              width={300}
+              height={300}
+              alt={name}
+              src={src}
+              onError={() => setSrc(sprites || '')}
+            />
+          </ImageContainer>
+          <DataContainer>
+            {stats.map(item => {
+              return Object.entries(item).map(([label, progress]) => (
+                <ProgressBar key={label} progress={progress} label={label} />
+              ))
+            })}
+          </DataContainer>
+        </section>
         {nextPokemonUrl && (
           <Link href={nextPokemonUrl} passHref>
             <NextArrow>
@@ -82,30 +111,6 @@ export function PokemonDetailView({
             </NextArrow>
           </Link>
         )}
-        <Id text={formatId(id)} />
-        <LikeButton id={id} />
-        <TypesContainer>
-          {types.map(type => (
-            <Badge key={type} text={type} colors={badgeColors} />
-          ))}
-        </TypesContainer>
-        <ImageContainer id={name}>
-          <Image
-            layout="responsive"
-            width={300}
-            height={300}
-            alt={name}
-            src={src}
-            onError={() => setSrc(sprites || '')}
-          />
-        </ImageContainer>
-        <DataContainer>
-          {stats.map(item => {
-            return Object.entries(item).map(([label, progress]) => (
-              <ProgressBar key={label} progress={progress} label={label} />
-            ))
-          })}
-        </DataContainer>
       </Container>
     </MainLayout>
   )

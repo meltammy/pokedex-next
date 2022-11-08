@@ -29,7 +29,7 @@ export default function OutlinedText({
           y2="92.064"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.2} stop-color={firstColor} />
+          <stop offset={0.3} stop-color={firstColor} />
           <stop offset={1} stop-color={secondColor} stop-opacity={0.2} />
         </linearGradient>
       </defs>
