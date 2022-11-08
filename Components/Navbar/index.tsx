@@ -1,6 +1,7 @@
 import { Routes } from '@/src/routes'
 import { useRouter } from 'next/router'
 import { PokeballIcon } from '../Icons/Pokeball'
+import { Link } from '../Link'
 import { NavLink } from './NavLink'
 import { StyledNavbar, Container } from './styles'
 
@@ -20,7 +21,9 @@ export function Navbar() {
   return (
     <StyledNavbar>
       <Container>
-        <PokeballIcon />
+        <Link href={Routes.POKEMONS}>
+          <PokeballIcon />
+        </Link>
         <ul>
           {navLinks.map(item => (
             <NavLink
