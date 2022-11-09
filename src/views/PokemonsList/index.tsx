@@ -34,7 +34,7 @@ export function PokemonsListView() {
 
   useEffect(() => {
     setHasMore(pokemons.length >= firstLimit)
-  }, [pokemons])
+  }, [pokemons.length])
 
   function handleFetchMore() {
     fetchMore({ variables: { offset: pokemons.length, limit: 52 } }).then(
