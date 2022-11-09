@@ -2,6 +2,7 @@ import {
   GetPokemonEvolution,
   GetPokemonEvolutionVariables,
 } from '@/lib/models/GetPokemonEvolution'
+import { formatPokemonEvolution } from '@/lib/utils/formatPokemons'
 import { gql, QueryHookOptions, useQuery } from '@apollo/client'
 
 export const GET_POKEMON_EVOLUTION = gql`
@@ -18,8 +19,15 @@ export const GET_POKEMON_EVOLUTION = gql`
 export function useGetPokemonEvolutionQuery(
   options?: QueryHookOptions<GetPokemonEvolution, GetPokemonEvolutionVariables>
 ) {
-  return useQuery<GetPokemonEvolution, GetPokemonEvolutionVariables>(
-    GET_POKEMON_EVOLUTION,
-    options
-  )
+  const { data: rawData, ...res } = useQuery<
+    GetPokemonEvolution,
+    GetPokemonEvolutionVariables
+  >(GET_POKEMON_EVOLUTION, options)
+
+  const data = rawData ? formatPokemonEvolution(rawData) : rawData
+
+  return {
+    data,
+    ...res,
+  }
 }

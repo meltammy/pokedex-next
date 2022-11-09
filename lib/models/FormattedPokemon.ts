@@ -11,8 +11,9 @@ export type FormattedPokemonDetail = FormattedPokemon & {
   height: number
   abilities: string[]
   stats: Record<string, number>[]
+  evolutionId: number | null
 }
 
 export type FormattedPokemonEvolution = {
-  evolutions: { name: string; id: number }[]
+  evolutions: { name: string; image: string }[]
 }

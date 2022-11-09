@@ -23,6 +23,9 @@ export const GET_POKEMON_DETAIL = gql`
           name
         }
       }
+      pokemon_v2_pokemonspecy {
+        evolution_chain_id
+      }
     }
   }
   ${defaultPokemonFragment}

@@ -2,6 +2,7 @@ import { Badge, LikeButton } from '@/Components'
 import { Arrow } from '@/Components/Icons/Arrow'
 import { ProgressBar } from '@/Components/ProgressBar'
 import { useNextPrevPokemons } from '@/lib/graphql/queries/getNextPrevPokemons'
+import { useGetPokemonEvolutionQuery } from '@/lib/graphql/queries/getPokemonEvolution'
 import { FormattedPokemonDetail } from '@/lib/models'
 import { formatId } from '@/lib/utils/formatPokemons'
 import { getColors } from '@/lib/utils/getColors'
@@ -20,6 +21,8 @@ import {
   NextArrow,
   PrevArrow,
   TypesContainer,
+  EvolutionsContainerMobile,
+  EvolutionsContainerDesktop,
 } from './styles'
 
 const badgeColors = {
@@ -34,8 +37,14 @@ export function PokemonDetailView({
   image,
   id,
   stats,
+  abilities,
+  evolutionId,
 }: FormattedPokemonDetail) {
   const [src, setSrc] = useState(image)
+  const { data: evolutionsData } = useGetPokemonEvolutionQuery({
+    variables: { id: evolutionId },
+    skip: !evolutionId,
+  })
   const { data, refetch } = useNextPrevPokemons({
     variables: {
       ids: [id - 1, id + 1],
@@ -97,12 +106,69 @@ export function PokemonDetailView({
             />
           </ImageContainer>
           <DataContainer>
-            {stats.map(item => {
-              return Object.entries(item).map(([label, progress]) => (
-                <ProgressBar key={label} progress={progress} label={label} />
-              ))
-            })}
+            <section>
+              <div>
+                <h3>Stats</h3>
+                {stats.map(item => {
+                  return Object.entries(item).map(([label, progress]) => (
+                    <ProgressBar
+                      key={label}
+                      progress={progress}
+                      label={label}
+                    />
+                  ))
+                })}
+              </div>
+
+              <div>
+                <h3>Abilities</h3>
+                <span>{abilities.join(', ')}</span>
+              </div>
+
+              {evolutionsData && (
+                <EvolutionsContainerMobile>
+                  <h3>Evolutions</h3>
+                  {evolutionsData.evolutions.map(({ name, image }, index) => (
+                    <div key={name}>
+                      <div>
+                        <Image
+                          layout="responsive"
+                          width={300}
+                          height={300}
+                          alt={name}
+                          src={image}
+                        />
+                        <Link href={Routes.POKEMON_DETAIL + name}>{name}</Link>
+                      </div>
+                      {index !== evolutionsData.evolutions.length - 1 && (
+                        <Arrow />
+                      )}
+                    </div>
+                  ))}
+                </EvolutionsContainerMobile>
+              )}
+            </section>
           </DataContainer>
+          {evolutionsData && (
+            <EvolutionsContainerDesktop>
+              <h3>Evolutions</h3>
+              {evolutionsData.evolutions.map(({ name, image }, index) => (
+                <div key={name}>
+                  <div>
+                    <Image
+                      layout="responsive"
+                      width={300}
+                      height={300}
+                      alt={name}
+                      src={image}
+                    />
+                    <Link href={Routes.POKEMON_DETAIL + name}>{name}</Link>
+                  </div>
+                  {index !== evolutionsData.evolutions.length - 1 && <Arrow />}
+                </div>
+              ))}
+            </EvolutionsContainerDesktop>
+          )}
         </section>
         {nextPokemonUrl && (
           <Link href={nextPokemonUrl} passHref>

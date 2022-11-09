@@ -14,6 +14,9 @@ interface PokemonDetail extends DefaultPokemon {
       name: string
     }
   }[]
+  pokemon_v2_pokemonspecy: {
+    evolution_chain_id: number | null
+  }
 }
 
 export type GetPokemonDetail = {

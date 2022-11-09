@@ -32,6 +32,7 @@ export function formatPokemonDetail({
     pokemon_v2_pokemonabilities,
     pokemon_v2_pokemonsprites,
     pokemon_v2_pokemonstats,
+    pokemon_v2_pokemonspecy,
     ...res
   } = pokemon_v2_pokemon[0]
 
@@ -48,6 +49,7 @@ export function formatPokemonDetail({
       [formatStatsLabel(item.pokemon_v2_stat.name)]: item.base_stat,
     })),
     image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${imageId}.png`,
+    evolutionId: pokemon_v2_pokemonspecy.evolution_chain_id,
   }
 }
 
@@ -85,7 +87,14 @@ export function formatPokemonEvolution({
   pokemon_v2_evolutionchain,
 }: GetPokemonEvolution): FormattedPokemonEvolution {
   return {
-    evolutions: pokemon_v2_evolutionchain[0].pokemon_v2_pokemonspecies,
+    evolutions: pokemon_v2_evolutionchain[0].pokemon_v2_pokemonspecies.map(
+      ({ id, name }) => ({
+        image: `https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formatId(
+          id
+        )}.png`,
+        name,
+      })
+    ),
   }
 }
 

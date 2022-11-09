@@ -8,5 +8,5 @@ export type GetPokemonEvolution = {
 }
 
 export type GetPokemonEvolutionVariables = {
-  id: number
+  id: number | null
 }

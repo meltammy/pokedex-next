@@ -54,11 +54,12 @@ export const Container = styled.div<ContainerProps>`
         'name  name . like'
         '. . . .'
         'image id detail detail'
-        'types types detail detail';
+        'types types detail detail'
+        'evolutions evolutions evolutions evolutions';
       margin: 0;
       grid-template-columns: 10rem 21rem auto 2rem;
       padding: 2rem 5rem;
-      grid-template-rows: 3rem 2rem 15rem 2rem;
+      grid-template-rows: 3rem 2rem 15rem 2rem max-content;
 
       > h1 {
         display: none;
@@ -81,17 +82,30 @@ export const ImageContainer = styled.div`
 export const DataContainer = styled.div`
   background-color: white;
   grid-area: detail;
-  height: 26rem;
   position: fixed;
   top: 16rem;
   width: 100%;
   max-width: 1080px;
-  padding: 5rem 1rem 0 1rem;
   z-index: 0;
   border-top-right-radius: 2rem;
   border-top-left-radius: 2rem;
-
   box-shadow: 0px -11px 6px #0000001f;
+  padding-top: 4rem;
+
+  > section {
+    overflow-y: auto;
+    height: 56vh;
+    padding: 0 1rem;
+
+    > div {
+      padding: 2rem 0;
+      border-bottom: 1px #00000017 solid;
+
+      > h3 {
+        margin-top: 0;
+      }
+    }
+  }
 
   @media (min-width: 1080px) {
     min-width: 22rem;
@@ -115,6 +129,7 @@ export const TypesContainer = styled.div`
     position: initial;
   }
 `
+
 export const Id = styled(OutlinedText)`
   grid-area: id;
 
@@ -166,5 +181,46 @@ export const Name = styled(OutlinedText)`
     margin-left: -24rem;
     text-transform: uppercase;
     height: 8rem;
+  }
+`
+
+export const EvolutionsContainerMobile = styled.div`
+  * {
+    margin: auto;
+  }
+
+  > div {
+    width: 8rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  svg {
+    fill: black;
+    rotate: -90deg;
+    margin: 1rem auto;
+  }
+
+  a {
+    font-size: 1.5rem;
+  }
+
+  @media (min-width: 1080px) {
+    display: none;
+  }
+`
+
+export const EvolutionsContainerDesktop = styled.div`
+  grid-area: evolutions;
+  display: flex;
+  width: 100%;
+  > div {
+    max-width: 5rem;
+  }
+  display: none;
+  @media (max-width: 1080px) {
+  }
+  svg {
+    rotate: 180deg;
   }
 `
