@@ -152,21 +152,25 @@ export function PokemonDetailView({
           {evolutionsData && (
             <EvolutionsContainerDesktop>
               <h3>Evolutions</h3>
-              {evolutionsData.evolutions.map(({ name, image }, index) => (
-                <div key={name}>
-                  <div>
-                    <Image
-                      layout="responsive"
-                      width={300}
-                      height={300}
-                      alt={name}
-                      src={image}
-                    />
-                    <Link href={Routes.POKEMON_DETAIL + name}>{name}</Link>
-                  </div>
-                  {index !== evolutionsData.evolutions.length - 1 && <Arrow />}
-                </div>
-              ))}
+              <div>
+                {evolutionsData.evolutions.map(({ name, image }, index) => (
+                  <>
+                    <div>
+                      <Image
+                        layout="responsive"
+                        width={300}
+                        height={300}
+                        alt={name}
+                        src={image}
+                      />
+                      <Link href={Routes.POKEMON_DETAIL + name}>{name}</Link>
+                    </div>
+                    {index !== evolutionsData.evolutions.length - 1 && (
+                      <Arrow />
+                    )}
+                  </>
+                ))}
+              </div>
             </EvolutionsContainerDesktop>
           )}
         </section>

@@ -42,7 +42,7 @@ export const Container = styled.div<ContainerProps>`
   @media (min-width: 1080px) {
     background: linear-gradient(
       ${({ backgroundColor }) => backgroundColor} 0%,
-      transparent 100%
+      transparent 95%
     ) !important;
 
     display: flex;
@@ -59,7 +59,7 @@ export const Container = styled.div<ContainerProps>`
       margin: 0;
       grid-template-columns: 10rem 21rem auto 2rem;
       padding: 2rem 5rem;
-      grid-template-rows: 3rem 2rem 15rem 2rem max-content;
+      grid-template-rows: 3rem 2rem 15rem min-content auto;
 
       > h1 {
         display: none;
@@ -113,6 +113,15 @@ export const DataContainer = styled.div`
     border-radius: 2rem;
     padding: 2rem;
     height: fit-content;
+
+    > section {
+      height: fit-content;
+
+      > div {
+        border: none;
+        padding: 1rem 0;
+      }
+    }
   }
 `
 
@@ -185,14 +194,20 @@ export const Name = styled(OutlinedText)`
 `
 
 export const EvolutionsContainerMobile = styled.div`
-  * {
-    margin: auto;
-  }
+  margin-bottom: 2rem;
 
   > div {
-    width: 8rem;
     display: flex;
     flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    text-transform: capitalize;
+    width: 100%;
+    align-items: center;
+    > div {
+      max-width: 12rem;
+      width: 100%;
+    }
   }
 
   svg {
@@ -212,15 +227,36 @@ export const EvolutionsContainerMobile = styled.div`
 
 export const EvolutionsContainerDesktop = styled.div`
   grid-area: evolutions;
-  display: flex;
   width: 100%;
+  background: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-top: 2rem;
+
   > div {
-    max-width: 5rem;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 2rem;
+    text-align: center;
+    > div {
+      width: 10rem;
+    }
   }
-  display: none;
+
   @media (max-width: 1080px) {
+    display: none;
   }
+
   svg {
     rotate: 180deg;
+    fill: black;
+    margin: auto;
+  }
+
+  a {
+    text-transform: capitalize;
+    text-decoration-line: underline;
   }
 `
