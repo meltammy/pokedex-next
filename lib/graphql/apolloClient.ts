@@ -6,7 +6,7 @@ import {
 } from '@apollo/client'
 
 const paginatedPokemonsPolicy = {
-  keyArgs: ['$cacheType', '$name'],
+  keyArgs: ['$name', '$types', '$maxId', '$cacheType', '$ids', '$orderBy'],
   merge(
     existing = [],
     incoming: unknown[],

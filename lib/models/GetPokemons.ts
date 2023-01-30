@@ -5,6 +5,9 @@ export interface GetPokemonsVariables {
   name: string
   offset?: number
   cacheType: string
+  types: string[] | null
+  maxId: number
+  orderBy?: Record<string, 'asc'>
 }
 
 export type GetPokemons = {

@@ -16,7 +16,7 @@ export const GET_POKEMON_EVOLUTION = gql`
   }
 `
 
-export function useGetPokemonEvolutionQuery(
+export function useGetPokemonEvolution(
   options?: QueryHookOptions<GetPokemonEvolution, GetPokemonEvolutionVariables>
 ) {
   const { data: rawData, ...res } = useQuery<

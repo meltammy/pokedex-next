@@ -28,3 +28,9 @@ export const Container = styled.div`
     width: 100%;
   }
 `
+
+export const LoadingContainer = styled.div`
+  width: fit-content;
+  margin: auto;
+  margin-top: 50vh;
+`

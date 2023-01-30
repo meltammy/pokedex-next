@@ -1,10 +1,10 @@
+import { defaultPokemonFragment } from '@/lib/graphql/fragments/pokemon'
 import {
   GetPokemonsByIds,
   GetPokemonsByIdsVariables,
 } from '@/lib/models/GetPokemonsByIds'
 
 import { gql, QueryHookOptions, useQuery } from '@apollo/client'
-import { defaultPokemonFragment } from '../fragments/pokemon'
 
 export const GET_POKEMONS_BY_IDS = gql`
   query pokemonsByIds(
@@ -17,6 +17,7 @@ export const GET_POKEMONS_BY_IDS = gql`
       limit: $limit
       offset: $offset
       where: { id: { _in: $ids } }
+      order_by: { id: asc }
     ) {
       ...DefaultPokemonFragment
     }
@@ -24,7 +25,7 @@ export const GET_POKEMONS_BY_IDS = gql`
   ${defaultPokemonFragment}
 `
 
-export function useGetPokemonsByIdsQuery(
+export function useGetPokemonsByIds(
   options?: QueryHookOptions<GetPokemonsByIds, GetPokemonsByIdsVariables>
 ) {
   return useQuery<GetPokemonsByIds, GetPokemonsByIdsVariables>(

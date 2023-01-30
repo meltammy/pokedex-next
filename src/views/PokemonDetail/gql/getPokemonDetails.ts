@@ -1,10 +1,10 @@
+import { apolloClient } from '@/lib/graphql/apolloClient'
+import { defaultPokemonFragment } from '@/lib/graphql/fragments/pokemon'
 import {
   GetPokemonDetail,
   GetPokemonDetailVariables,
 } from '@/lib/models/GetPokemonDetail'
 import { gql } from '@apollo/client'
-import { apolloClient } from '../apolloClient'
-import { defaultPokemonFragment } from '../fragments/pokemon'
 
 export const GET_POKEMON_DETAIL = gql`
   query pokemonDetail($name: String) {

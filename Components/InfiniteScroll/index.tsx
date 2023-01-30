@@ -10,6 +10,7 @@ type InfiniteScrollProps = {
   fetchMore: () => void
   loader?: ReactNode
   initialPage: number
+  hidden?: boolean
 }
 
 const DefaultLoader = <PikachuLoading enableAnimation={false} />
@@ -20,6 +21,7 @@ export function InfiniteScroll({
   loader = DefaultLoader,
   fetchMore,
   initialPage = 0,
+  hidden = false,
 }: InfiniteScrollProps) {
   const ref = useRef(null)
   const [page, setPage] = useState(initialPage)
@@ -32,6 +34,8 @@ export function InfiniteScroll({
   useEffect(() => {
     observerInfiniteScroll(ref, setPage)
   }, [children])
+
+  if (hidden) return null
 
   return (
     <>
