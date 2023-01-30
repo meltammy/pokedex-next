@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 
 import { PokemonDetailView } from '@/src/views/PokemonDetail'
-import { fetchPokemonDetail } from '@/lib/graphql/queries/getPokemonDetails'
+import { fetchPokemonDetail } from '@/src/views/PokemonDetail/gql/getPokemonDetails'
 import { ComponentProps } from 'react'
 import { formatPokemonDetail } from '@/lib/utils/formatPokemons'
 import { SplashScreen } from '@/src/views/SplashScreen'
