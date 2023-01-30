@@ -1,9 +1,11 @@
 import { Badge, LikeButton } from '@/Components'
 import { Arrow } from '@/Components/Icons/Arrow'
 import { ProgressBar } from '@/Components/ProgressBar'
-import { useNextPrevPokemons } from '@/lib/graphql/queries/getNextPrevPokemons'
-import { useGetPokemonEvolutionQuery } from '@/lib/graphql/queries/getPokemonEvolution'
+
+import { useNextPrevPokemons } from '@/src/views/PokemonDetail/gql/getNextPrevPokemons'
+import { useGetPokemonEvolution } from './gql/getPokemonEvolution'
 import { FormattedPokemonDetail } from '@/lib/models'
+
 import { formatId } from '@/lib/utils/formatPokemons'
 import { getColors } from '@/lib/utils/getColors'
 import { MainLayout } from '@/src/layouts'
@@ -41,7 +43,7 @@ export function PokemonDetailView({
   evolutionId,
 }: FormattedPokemonDetail) {
   const [src, setSrc] = useState(image)
-  const { data: evolutionsData } = useGetPokemonEvolutionQuery({
+  const { data: evolutionsData } = useGetPokemonEvolution({
     variables: { id: evolutionId },
     skip: !evolutionId,
   })
@@ -59,6 +61,7 @@ export function PokemonDetailView({
   useEffect(() => {
     refetch()
     setSrc(image)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
   const colorType =
@@ -68,6 +71,7 @@ export function PokemonDetailView({
     data?.pokemon_v2_pokemon.length === 1
       ? undefined
       : Routes.POKEMON_DETAIL + data?.pokemon_v2_pokemon[0].name
+
   const nextPokemonUrl =
     data?.pokemon_v2_pokemon.length === 1
       ? Routes.POKEMON_DETAIL + data?.pokemon_v2_pokemon[0].name

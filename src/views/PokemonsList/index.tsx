@@ -1,4 +1,3 @@
-import { useGetPokemonsQuery } from '@/lib/graphql/queries/getPokemons'
 import { ListContainer, PokemonCard } from '@/Components'
 import { formatPokemons } from '@/lib/utils/formatPokemons'
 import { InfiniteScroll } from '@/Components/InfiniteScroll'
@@ -8,20 +7,47 @@ import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 import { MainLayout } from '@/src/layouts/MainLayout'
 import { SearchInput } from '@/Components/SearchInput'
 import { useDebouncedSearchInput } from '@/lib/hooks/useDebouncedInput'
-import { Container, LoadingContainer } from './styles'
-import { PikachuLoading } from '@/Components/PikachuLoading'
+import { Container } from './styles'
+import { types } from '@/lib/models/types'
+import { FilterIcon } from '@/Components/Icons/Filter'
+import { FilterDrawer } from '@/Components/Filter'
+import { useGetPokemons } from './gql/getPokemons'
 
 const firstLimit = 20
+
+enum Order {
+  ID = 'id',
+  NAME = 'name',
+}
+
+type FormData = {
+  types: string[]
+  maxId: number
+  orderBy: Order
+}
+
+const initialFiltersValue = {
+  types: [],
+  maxId: Number(process.env.NEXT_PUBLIC_MAX_ID),
+  orderBy: Order.ID,
+}
 
 export function PokemonsListView() {
   const { dispatchSimpleEvent } = useAmplitude()
   const [hasMore, setHasMore] = useState(true)
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false)
   const { debouncedValue: searchName, bind } = useDebouncedSearchInput('')
-  const { data, fetchMore, loading } = useGetPokemonsQuery({
+  const [filters, setFilters] = useState<FormData>(initialFiltersValue)
+  const { data, fetchMore, loading } = useGetPokemons({
     variables: {
       limit: firstLimit,
       cacheType: 'allPokemons',
       name: searchName,
+      types: filters?.types?.length ? filters.types : types,
+      maxId: filters.maxId,
+      orderBy: {
+        [filters.orderBy]: 'asc',
+      },
     },
   })
 
@@ -34,7 +60,7 @@ export function PokemonsListView() {
 
   useEffect(() => {
     setHasMore(pokemons.length >= firstLimit)
-  }, [pokemons])
+  }, [pokemons.length])
 
   function handleFetchMore() {
     fetchMore({ variables: { offset: pokemons.length, limit: 52 } }).then(
@@ -46,26 +72,31 @@ export function PokemonsListView() {
 
   return (
     <MainLayout>
+      <FilterDrawer
+        isOpen={drawerIsOpen}
+        onClose={() => setDrawerIsOpen(false)}
+        resetFilter={() => setFilters(initialFiltersValue)}
+        setFilters={setFilters}
+      />
       <Container>
         <SearchInput placeholder="Buscar por nome" {...bind} />
+        <button onClick={() => setDrawerIsOpen(!drawerIsOpen)}>
+          <FilterIcon />
+          {!!filters.types.length && <span>{filters.types.length}</span>}
+        </button>
       </Container>
-      {loading ? (
-        <LoadingContainer>
-          <PikachuLoading />
-        </LoadingContainer>
-      ) : (
-        <InfiniteScroll
-          fetchMore={handleFetchMore}
-          hasMore={hasMore}
-          initialPage={0}
-        >
-          <ListContainer>
-            {pokemons.map(item => (
-              <PokemonCard key={item.id} {...item} />
-            ))}
-          </ListContainer>
-        </InfiniteScroll>
-      )}
+      <InfiniteScroll
+        fetchMore={handleFetchMore}
+        hasMore={hasMore}
+        initialPage={0}
+        hidden={loading}
+      >
+        <ListContainer loading={loading}>
+          {pokemons.map(item => (
+            <PokemonCard key={item.id} {...item} />
+          ))}
+        </ListContainer>
+      </InfiniteScroll>
     </MainLayout>
   )
 }

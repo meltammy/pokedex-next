@@ -5,9 +5,7 @@ import { useEffect, useState } from 'react'
 import { useAmplitude } from '@/lib/utils/amplitude/useAmplitude'
 import { AmplitudeEventsName } from '@/lib/models/Amplitude'
 import { MainLayout } from '@/src/layouts/MainLayout'
-import { PikachuLoading } from '@/Components/PikachuLoading'
-import { LoadingContainer } from './styles'
-import { useGetPokemonsByIdsQuery } from '@/lib/graphql/queries/getPokemonsById'
+import { useGetPokemonsByIds } from './gql/getPokemonsById'
 
 export function FavoritesView() {
   const { dispatchSimpleEvent } = useAmplitude()
@@ -17,7 +15,7 @@ export function FavoritesView() {
     JSON.parse(likesFromStorage || '[]')
   )
 
-  const { data, fetchMore, loading } = useGetPokemonsByIdsQuery({
+  const { data, fetchMore, loading } = useGetPokemonsByIds({
     variables: {
       ids: likedPokemons,
       cacheType: 'likedPokemons',
@@ -44,27 +42,22 @@ export function FavoritesView() {
 
   return (
     <MainLayout>
-      {loading ? (
-        <LoadingContainer>
-          <PikachuLoading />
-        </LoadingContainer>
-      ) : (
-        <InfiniteScroll
-          fetchMore={handleFetchMore}
-          hasMore={likedPokemons.length !== pokemons.length}
-          initialPage={0}
-        >
-          <ListContainer>
-            {pokemons.map(item => (
-              <PokemonCard
-                key={item.id}
-                {...item}
-                onRemoveFromLikes={() => onRemoveFromLikes(item.id)}
-              />
-            ))}
-          </ListContainer>
-        </InfiniteScroll>
-      )}
+      <InfiniteScroll
+        fetchMore={handleFetchMore}
+        hasMore={likedPokemons.length !== pokemons.length}
+        initialPage={0}
+        hidden={loading}
+      >
+        <ListContainer loading={loading}>
+          {pokemons.map(item => (
+            <PokemonCard
+              key={item.id}
+              {...item}
+              onRemoveFromLikes={() => onRemoveFromLikes(item.id)}
+            />
+          ))}
+        </ListContainer>
+      </InfiniteScroll>
     </MainLayout>
   )
 }
