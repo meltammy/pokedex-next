@@ -1,12 +1,14 @@
 import { Drawer, OrderBySection } from './styles'
 import { types } from '@/lib/models/types'
 import { useForm } from 'react-hook-form'
+import { useEffect } from 'react'
 
 type FilterProps = {
   isOpen: boolean
   onClose: () => void
   resetFilter: () => void
   setFilters: (formData: FormData) => void
+  filters: FormData
 }
 
 enum Order {
@@ -25,6 +27,7 @@ export function FilterDrawer({
   onClose,
   resetFilter,
   setFilters,
+  filters,
 }: FilterProps) {
   const MAX_ID = Number(process.env.NEXT_PUBLIC_MAX_ID)
   const { register, handleSubmit, reset, setValue, watch } = useForm<FormData>({
@@ -32,6 +35,11 @@ export function FilterDrawer({
   })
 
   const selectAllIsChecked = watch('types').length === types.length
+
+  useEffect(() => {
+    if (filters !== watch()) reset(filters)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters])
 
   return (
     <Drawer isOpen={isOpen}>
@@ -88,7 +96,9 @@ export function FilterDrawer({
           />
         </section>
         <footer>
-          <button type="submit">Apply</button>
+          <button type="submit" onClick={onClose}>
+            Apply
+          </button>
           <button
             type="reset"
             onClick={() => {

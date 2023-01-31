@@ -22,12 +22,16 @@ export const getStaticProps: GetStaticProps<PageProps> = async ({ params }) => {
   const name = params?.name
   if (!name || Array.isArray(name)) return { notFound: true }
 
-  const response = await fetchPokemonDetail(name)
-  const pokemon = formatPokemonDetail(response.data)
+  try {
+    const response = await fetchPokemonDetail(name)
+    const pokemon = formatPokemonDetail(response.data)
 
-  return {
-    props: { ...pokemon },
-    revalidate: 60 * 60 * 7 * 48,
+    return {
+      props: { ...pokemon },
+      revalidate: 60 * 60 * 7 * 48,
+    }
+  } catch {
+    return { notFound: true }
   }
 }
 
