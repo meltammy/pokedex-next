@@ -70,19 +70,34 @@ export function PokemonsListView() {
     )
   }
 
+  const filterConter =
+    filters.types.length +
+    (filters.maxId !== Number(process.env.NEXT_PUBLIC_MAX_ID) ? 1 : 0)
+
+  function resetFilter() {
+    setDrawerIsOpen(false)
+    setFilters(initialFiltersValue)
+  }
+
+  function onClickNotFoundAction() {
+    setFilters(initialFiltersValue)
+    bind.setValue('')
+  }
+
   return (
     <MainLayout>
       <FilterDrawer
         isOpen={drawerIsOpen}
         onClose={() => setDrawerIsOpen(false)}
-        resetFilter={() => setFilters(initialFiltersValue)}
+        resetFilter={resetFilter}
         setFilters={setFilters}
+        filters={filters}
       />
       <Container>
         <SearchInput placeholder="Buscar por nome" {...bind} />
         <button onClick={() => setDrawerIsOpen(!drawerIsOpen)}>
           <FilterIcon />
-          {!!filters.types.length && <span>{filters.types.length}</span>}
+          {!!filterConter && <span>{filterConter}</span>}
         </button>
       </Container>
       <InfiniteScroll
@@ -91,7 +106,16 @@ export function PokemonsListView() {
         initialPage={0}
         hidden={loading}
       >
-        <ListContainer loading={loading}>
+        <ListContainer
+          loading={loading}
+          showNotFound={!pokemons.length}
+          notFoundText="<h1>No results found</h1>"
+          notFoundAction={
+            <button type="reset" onClick={onClickNotFoundAction}>
+              Clear Filters
+            </button>
+          }
+        >
           {pokemons.map(item => (
             <PokemonCard key={item.id} {...item} />
           ))}

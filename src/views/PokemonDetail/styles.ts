@@ -13,7 +13,7 @@ export const Container = styled.div<ContainerProps>`
   box-shadow: inset 0px 12px 11px -11px #00000042;
 
   > section {
-    max-width: 1080px;
+    max-width: 1008px;
     margin: auto;
     display: grid;
     grid-template-areas: 'name . like' 'image image image' 'detail detail detail';
@@ -102,8 +102,28 @@ export const DataContainer = styled.div`
       border-bottom: 1px #00000017 solid;
 
       > h3 {
+        margin-bottom: 1rem;
         margin-top: 0;
       }
+    }
+
+    ::-webkit-scrollbar {
+      width: 0.25rem;
+    }
+
+    ::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 5px #80808040;
+      margin-bottom: 2rem;
+      border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: silver;
+      border-radius: 1rem;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: grey;
     }
   }
 
@@ -118,8 +138,11 @@ export const DataContainer = styled.div`
       height: fit-content;
 
       > div {
-        border: none;
         padding: 1rem 0;
+        min-height: 6.875rem;
+        &:first-of-type {
+          padding-top: 0;
+        }
       }
     }
   }
@@ -153,110 +176,5 @@ export const Id = styled(OutlinedText)`
     align-self: flex-end;
     width: 12rem;
     height: 10rem;
-  }
-`
-
-export const PrevArrow = styled.a`
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 12rem;
-
-  @media (min-width: 1080px) {
-    position: initial;
-  }
-`
-
-export const NextArrow = styled.a`
-  width: 2rem;
-  height: 2rem;
-  position: absolute;
-  top: 12rem;
-  right: 0;
-  rotate: 180deg;
-
-  @media (min-width: 1080px) {
-    position: initial;
-  }
-`
-
-export const Name = styled(OutlinedText)`
-  opacity: 0;
-
-  @media (min-width: 1080px) {
-    opacity: 1;
-    grid-area: name;
-    width: 55rem;
-    margin-left: -24rem;
-    text-transform: uppercase;
-    height: 8rem;
-  }
-`
-
-export const EvolutionsContainerMobile = styled.div`
-  margin-bottom: 2rem;
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    text-transform: capitalize;
-    width: 100%;
-    align-items: center;
-    > div {
-      max-width: 12rem;
-      width: 100%;
-    }
-  }
-
-  svg {
-    fill: black;
-    rotate: -90deg;
-    margin: 1rem auto;
-  }
-
-  a {
-    font-size: 1.5rem;
-  }
-
-  @media (min-width: 1080px) {
-    display: none;
-  }
-`
-
-export const EvolutionsContainerDesktop = styled.div`
-  grid-area: evolutions;
-  width: 100%;
-  background: white;
-  border-radius: 2rem;
-  padding: 2rem;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  margin-top: 2rem;
-
-  > div {
-    display: flex;
-    justify-content: space-around;
-    padding: 0 2rem;
-    text-align: center;
-    > div {
-      width: 10rem;
-    }
-  }
-
-  @media (max-width: 1080px) {
-    display: none;
-  }
-
-  svg {
-    rotate: 180deg;
-    fill: black;
-    margin: auto;
-  }
-
-  a {
-    text-transform: capitalize;
-    text-decoration-line: underline;
   }
 `

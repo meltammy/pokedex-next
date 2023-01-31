@@ -1,4 +1,10 @@
-import { useState, ChangeEvent, useEffect } from 'react'
+import {
+  useState,
+  ChangeEvent,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from 'react'
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement>
 
@@ -7,6 +13,7 @@ export type UseDebouncedInput = (initialValue: string) => {
   bind: {
     value: string
     onChange: (event: InputChangeEvent) => void
+    setValue: Dispatch<SetStateAction<string>>
   }
 }
 
@@ -40,6 +47,7 @@ export const useDebouncedSearchInput: UseDebouncedInput = (
     bind: {
       value,
       onChange,
+      setValue,
     },
   }
 }

@@ -29,17 +29,17 @@ export default function OutlinedText({
           y2="92.064"
           gradientUnits="userSpaceOnUse"
         >
-          <stop offset={0.3} stop-color={firstColor} />
-          <stop offset={1} stop-color={secondColor} stop-opacity={0.2} />
+          <stop offset={0.3} stopColor={firstColor} />
+          <stop offset={1} stopColor={secondColor} stopOpacity={0.2} />
         </linearGradient>
       </defs>
       <g>
         <text
           id="text"
           y="100"
-          font-size="90"
-          font-weight="400"
-          stroke-width="2"
+          fontSize="90"
+          fontWeight="400"
+          strokeWidth="2"
           fontFamily="arial"
           stroke="url(#linearGradient)"
         >
