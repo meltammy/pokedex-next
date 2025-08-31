@@ -1,0 +1,30 @@
+@use "@/styles/variables" as var;
+
+.container {
+  display: flex;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  transition: 0.2s;
+
+  a {
+    margin-left: 0.5rem;
+
+    &:hover {
+      color: var.$primary-color;
+      border-color: var.$primary-color;
+    }
+  }
+
+  svg {
+    margin: 2px 0.5rem 0 0.5rem;
+  }
+
+  @media (max-width: var.$mobile-sm) {
+    font-size: 1rem;
+
+    svg {
+      width: 1rem;
+      margin: 0px 0.5rem 0 0.5rem;
+    }
+  }
+}
