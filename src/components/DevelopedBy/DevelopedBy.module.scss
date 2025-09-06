@@ -16,15 +16,33 @@
   }
 
   svg {
-    margin: 2px 0.5rem 0 0.5rem;
+    margin: 0 0.5rem;
   }
 
   @media (max-width: var.$mobile-sm) {
     font-size: 1rem;
+  }
+}
 
-    svg {
-      width: 1rem;
-      margin: 0px 0.5rem 0 0.5rem;
+.heart {
+  fill: var.$pink;
+  stroke: var.$pink;
+  transform-origin: center;
+  animation: beat 2s infinite;
+
+  @keyframes beat {
+    0%,
+    100% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.2);
+    }
+    50% {
+      transform: scale(1);
+    }
+    75% {
+      transform: scale(1.1);
     }
   }
 }

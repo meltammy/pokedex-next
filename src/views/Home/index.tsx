@@ -18,7 +18,6 @@ interface HomeViewProps {
 
 export function HomeView({ locale = "en" }: HomeViewProps) {
   const [isOpen, setIsOpen] = useState(false);
-
   const currentLocale: Locale = parseLocale(locale);
   const dictionary = homeDictionaries[currentLocale] || homeDictionaries.en;
 

@@ -14,7 +14,8 @@ export function DevelopedBy({ locale = "en" }: Props) {
 
   return (
     <p className={styles.container}>
-      {dict.prefix} <HeartIcon role="img" aria-label={dict.love} />{" "}
+      {dict.prefix}{" "}
+      <HeartIcon role="img" aria-label={dict.love} className={styles.heart} />{" "}
       {dict.suffix}{" "}
       <a
         href={ExternalLinks.LINKEDIN}

@@ -1,38 +1,23 @@
 @use "@/styles/variables" as var;
 
 .pokeButton {
-  border-radius: 100dvh;
-  width: 24dvh;
-  height: 24dvh;
-  margin: 38dvh auto 0 auto;
-  position: relative;
-  display: flex;
-  border: 0.8rem black solid;
-  background-color: rgba(255, 255, 255);
   transition: 0.7s;
-  outline: none;
-  padding: 0;
-  z-index: 9999;
 
-  span {
-    display: block;
-  }
+  position: absolute;
+  bottom: calc(((var.$pokeballSize / 2) * -1) - var.$pokeballBorderSize);
+  left: calc(50% - (var.$pokeballSize / 2));
+  width: var.$pokeballSize;
+  height: var.$pokeballSize;
 
-  @media (max-width: 768px) {
-    width: 18dvh;
-    height: 18dvh;
-    margin: 41dvh auto 0 auto;
-  }
+  border-radius: 100%;
+  border: 0.8rem black solid;
+
+  background-color: var.$white;
+  z-index: 999;
 
   &[data-is-open="true"] {
-    margin: 3dvh auto 0 auto;
-
     span {
       display: none;
-    }
-
-    @media (max-width: 768px) {
-      margin: 3dvh auto 0 auto;
     }
   }
 }
@@ -40,19 +25,18 @@
 .buttonDetail {
   width: 100%;
   height: 100%;
-  border-radius: 100px;
+  border-radius: 100%;
+
   box-shadow: inset 0px 0 16px 2px #00000066;
   border: 0.5rem #00000012 solid;
+
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   span {
-    margin: auto;
     opacity: 0;
     animation: opacityAnimation 20s infinite;
-  }
-
-  &:active {
-    box-shadow: inset 0px 0 16px 6px #00000066;
   }
 }
 
