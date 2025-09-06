@@ -7,6 +7,14 @@ const nextConfig: NextConfig = {
   },
   images: {
     domains: ["tenor.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        port: "",
+        pathname: "/PokeAPI/sprites/**",
+      },
+    ],
   },
 };
 

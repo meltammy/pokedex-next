@@ -1,0 +1,62 @@
+@use "@/styles/variables" as var;
+
+.container {
+  display: grid;
+  grid-template-areas:
+    "image image image"
+    "id . ."
+    "name . like"
+    "types types types";
+  row-gap: 0.25rem;
+
+  border-radius: 1rem;
+  padding: 1rem;
+  width: var.$pokemonCardSize;
+  box-shadow: 1px 1px 7px 2px #00000024;
+  background: linear-gradient(var(--bg-color) 0%, transparent 68%) !important;
+
+  > small {
+    grid-area: id;
+  }
+
+  > h3 {
+    grid-area: name;
+    display: inline;
+    text-transform: capitalize;
+    line-height: 24px;
+    font-size: 1.125rem;
+  }
+
+  > img {
+    grid-area: image;
+  }
+
+  > div {
+    grid-area: types;
+    height: fit-content;
+    display: flex;
+    gap: 0.25rem;
+  }
+
+  @media (max-width: var.$breakpoint-mobile) {
+    width: 100%;
+
+    grid-template-columns: auto 40% 2rem;
+    grid-template-rows: min-content 2rem auto 1.5rem;
+
+    grid-template-areas:
+      "id . like"
+      "name image image"
+      ". image image"
+      "types image image";
+
+    > button {
+      margin-bottom: auto;
+    }
+
+    img {
+      height: 100%;
+      width: auto;
+    }
+  }
+}

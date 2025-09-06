@@ -5,6 +5,10 @@ $black: #000000;
 $pink: #ff3973;
 
 // Breakpoints
-$mobile-sm: 360px;
+$breakpoint-mobile-sm: 360px;
+$breakpoint-desktop: 1024px;
+$breakpoint-tablet: 750px;
+$breakpoint-mobile: 465px;
 $pokeballSize: 120px;
 $pokeballBorderSize: 16px;
+$pokemonCardSize: 13rem;

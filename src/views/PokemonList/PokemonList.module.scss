@@ -1,0 +1,28 @@
+@use "@/styles/variables" as var;
+
+.mainContainer {
+  padding: 1rem;
+
+  section {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    max-width: 876px;
+    margin: auto;
+
+    @media (max-width: var.$breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 650px;
+    }
+
+    @media (max-width: var.$breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 432px;
+    }
+
+    @media (max-width: var.$breakpoint-mobile) {
+      grid-template-columns: 1fr;
+      max-width: 100%;
+    }
+  }
+}
