@@ -1,7 +1,4 @@
 {
-  "button": "Clique!",
-  "buttonOpen": "Abrir detalhes",
-  "buttonClose": "Fechar detalhes",
   "title": "Oi, eu sou a Mel!",
   "description": "Este é meu projeto pessoal, uma Pokédex onde organizo dados de Pokémon enquanto mostro minhas habilidades em React, Next.js e Sass.",
   "linkCatch": "Capture todos!",

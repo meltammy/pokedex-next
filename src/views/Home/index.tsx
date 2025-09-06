@@ -10,6 +10,7 @@ import styles from "./HomeView.module.scss";
 import { parseLocale } from "@/lib/utils/parseLocale";
 import { Locale } from "@/types/locale";
 import { homeDictionaries } from "@/locales/home";
+import { PokeballButton } from "./components/PokeballButton";
 
 interface HomeViewProps {
   locale?: string;
@@ -24,18 +25,11 @@ export function HomeView({ locale = "en" }: HomeViewProps) {
   return (
     <div data-is-open={isOpen} className={styles.container}>
       <header data-is-open={isOpen} className={styles.header}>
-        <button
-          data-is-open={isOpen}
-          className={styles.pokeButton}
-          onClick={() => setIsOpen(!isOpen)}
-          aria-expanded={isOpen}
-          aria-controls="main-container"
-          aria-label={isOpen ? dictionary.buttonClose : dictionary.buttonOpen}
-        >
-          <div className={styles.buttonDetail}>
-            <span>{dictionary.button}</span>
-          </div>
-        </button>
+        <PokeballButton
+          isOpen={isOpen}
+          locale={currentLocale}
+          toggleIsOpen={() => setIsOpen(!isOpen)}
+        />
       </header>
 
       <main

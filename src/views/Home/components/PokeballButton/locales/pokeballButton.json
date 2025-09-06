@@ -1,0 +1,12 @@
+{
+  "en": {
+    "button": "Click!",
+    "buttonOpen": "Open details",
+    "buttonClose": "Close details"
+  },
+  "ptBR": {
+    "button": "Clique!",
+    "buttonOpen": "Abrir detalhes",
+    "buttonClose": "Fechar detalhes"
+  }
+}
