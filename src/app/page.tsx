@@ -1,5 +1,5 @@
-import { HomeView } from "@/views/Home";
+import { redirect } from "next/navigation";
 
-export default function HomePage() {
-  return <HomeView />;
+export default function RootPage() {
+  redirect("/en");
 }
