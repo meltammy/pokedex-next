@@ -34,7 +34,7 @@ export function PokemonCard({
 
   return (
     <Link
-      href={Routes.POKEMON_DETAIL + name}
+      href={`/${locale}` + Routes.POKEMON_DETAIL + id}
       passHref
       className={styles.container}
       style={{ "--bg-color": bgColor } as CSSProperties}

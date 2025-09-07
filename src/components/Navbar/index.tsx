@@ -16,14 +16,14 @@ export function Navbar({ locale = "en" }) {
   const dictionary = locales[currentLocale] || locales.en;
 
   const navLinks = [
-    { href: Routes.POKEMONS, children: dictionary.pokemons },
-    { href: Routes.FAVORITES, children: dictionary.favorites },
+    { href: `/${locale}` + Routes.POKEMONS, children: dictionary.pokemons },
+    { href: `/${locale}` + Routes.FAVORITES, children: dictionary.favorites },
   ];
 
   return (
     <nav className={styles.Navbar}>
       <div className={styles.container}>
-        <Link href={Routes.POKEMONS}>
+        <Link href={`/${locale}` + Routes.POKEMONS}>
           <PokeballIcon />
         </Link>
         <ul>
