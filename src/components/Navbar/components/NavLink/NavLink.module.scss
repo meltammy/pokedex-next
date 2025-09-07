@@ -1,0 +1,12 @@
+@use "@/styles/variables" as var;
+
+.linkContainer {
+  margin: 0 1rem;
+  color: var.$black;
+  font-weight: normal;
+
+  &.active {
+    color: var.$red;
+    font-weight: 600;
+  }
+}
