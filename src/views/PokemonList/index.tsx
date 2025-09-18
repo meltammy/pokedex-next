@@ -6,7 +6,7 @@ import styles from "./PokemonList.module.scss";
 import { Locale } from "@/types/locale";
 import { parseLocale } from "@/lib/utils/parseLocale";
 
-export function PokemonList({ locale = "en" }) {
+export function PokemonListView({ locale = "en" }) {
   const currentLocale: Locale = parseLocale(locale);
 
   const { data } = useListPokemons();
