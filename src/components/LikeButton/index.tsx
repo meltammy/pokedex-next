@@ -7,20 +7,11 @@ import styles from "./LikeButton.module.scss";
 export function LikeButton() {
   const [isLiked, setIsLiked] = useState(false);
 
-  const getColor = () => {
-    if (window.innerWidth <= 515) {
-      return isLiked ? "hotpink" : "white";
-    } else if (window.innerWidth <= 768) {
-      return isLiked ? "hotpink" : "darkgrey";
-    }
-    return isLiked ? "hotpink" : "darkgrey";
-  };
-
   return (
     <button
       className={styles.button}
       onClick={() => setIsLiked(!isLiked)}
-      style={{ color: getColor() }}
+      data-is-liked={isLiked}
     >
       <HeartIcon
         fill="currentColor"
