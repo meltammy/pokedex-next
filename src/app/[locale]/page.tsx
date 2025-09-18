@@ -1,5 +1,4 @@
+import { withLocaleAndParams } from "@/Layouts/withLocaleAndParams";
 import { HomeView } from "@/views/Home";
 
-export default function HomePage({ params }: { params: { locale: string } }) {
-  return <HomeView locale={params.locale} />;
-}
+export default withLocaleAndParams(HomeView);
