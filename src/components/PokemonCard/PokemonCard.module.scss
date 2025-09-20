@@ -29,6 +29,8 @@
 
   > img {
     grid-area: image;
+    max-width: 100%;
+    height: auto;
   }
 
   > div {

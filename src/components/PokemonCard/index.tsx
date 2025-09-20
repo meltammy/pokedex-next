@@ -38,14 +38,9 @@ export function PokemonCard({
       passHref
       className={styles.container}
       style={{ "--bg-color": bgColor } as CSSProperties}
+      key={`${id}-${name}`}
     >
-      <Image
-        layout="responsive"
-        width={300}
-        height={300}
-        alt={name}
-        src={image}
-      />
+      <Image width={300} height={300} alt={name} src={image} priority />
       <small>Nº{id}</small>
       <h3>{name}</h3>
       <LikeButton />
