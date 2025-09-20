@@ -5,15 +5,7 @@ import fetch from "cross-fetch";
 const paginatedPokemonsPolicy = {
   keyArgs: ["$id", "$cacheType"],
 
-  merge(
-    existing = [],
-    incoming: unknown[],
-    fieldOptions: FieldFunctionOptions<
-      Record<string, unknown>,
-      Record<string, unknown>
-    >
-  ) {
-    console.log({ fieldOptions, existing, incoming });
+  merge(existing: { __ref: string }[] = [], incoming: { __ref: string }[]) {
     return [...existing, ...incoming];
   },
 };

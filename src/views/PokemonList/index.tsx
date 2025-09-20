@@ -7,7 +7,7 @@ import { parseLocale } from "@/lib/utils/parseLocale";
 import { Pokemon } from "@/types/pokemon";
 import { usePokemonList } from "@/lib/graphql/queries/listPokemons";
 import { InfiniteScroll } from "@/components/InfiniteScroll";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   initialPokemons: Pokemon[];
@@ -24,17 +24,17 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
   const { data, fetchMore, loading } = usePokemonList({
     variables: {
       limit: firstLimit,
-      offset: firstLimit,
+      offset: 0,
       cacheType: "allPokemons",
     },
     fetchPolicy: "cache-first",
   });
 
-  const pokemons = data?.pokemon
-    ? [...initialPokemons, ...data?.pokemon]
-    : initialPokemons;
+  const pokemons = data?.pokemon ? data?.pokemon : initialPokemons;
 
   function handleFetchMore() {
+    if (loading) return;
+
     fetchMore({ variables: { offset: pokemons.length, limit: 20 } }).then(
       ({ data }) => {
         setHasMore(Boolean(data?.pokemon.length));
