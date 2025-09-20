@@ -5,16 +5,13 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  text-align: center;
 
   &[data-variant="outline-primary"] {
     border: 1px white solid;
     padding: 0.5rem 1rem;
     border-radius: 0.2rem;
     box-shadow: 0px 4px 5px 2px #0000009e;
-
-    &:hover {
-      box-shadow: 0px 4px 5px 2px #000000;
-    }
   }
 
   &:hover {

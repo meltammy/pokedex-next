@@ -40,7 +40,7 @@ export function HomeView({ locale = "en" }: HomeViewProps) {
         <h1>{dictionary.title}</h1>
         <p>{dictionary.description}</p>
 
-        <Link href={Routes.POKEMONS} aria-label={dictionary.linkCatchLabel}>
+        <Link href={Routes.WARNINGS} aria-label={dictionary.linkCatchLabel}>
           {dictionary.linkCatch}
         </Link>
 

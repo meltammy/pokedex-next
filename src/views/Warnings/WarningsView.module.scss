@@ -1,0 +1,103 @@
+@use "@/styles/variables" as var;
+
+.container {
+  position: relative;
+  min-height: 100dvh;
+  overflow-x: hidden;
+
+  padding: 5rem 1rem;
+  background: linear-gradient(
+    0deg,
+    var.$greenDarkGrass 2%,
+    var.$greenGrass 20%,
+    var.$primary-color 20%,
+    var.$blueSky 100%
+  );
+
+  @media (max-width: var.$breakpoint-tablet) {
+    padding: 2rem 1rem;
+  }
+}
+
+.textContainer {
+  position: relative;
+  margin-bottom: 30%;
+  background-color: #00000082;
+  padding: 2rem;
+  border-radius: 2rem;
+  max-width: 40rem;
+  color: var.$white;
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+
+  h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var.$primary-color;
+  }
+
+  p {
+    font-size: 0.875rem;
+    text-align: justify;
+  }
+
+  > div {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+    min-width: 100%;
+  }
+
+  @media (max-width: var.$breakpoint-tablet) {
+    h1 {
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 0.75rem;
+    }
+
+    a {
+      font-size: 0.75rem;
+    }
+  }
+}
+
+.pikachuRunning {
+  position: absolute;
+  bottom: 16%;
+  left: -16%;
+
+  animation: runRight linear infinite;
+  animation-duration: 10s;
+
+  width: fit-content;
+
+  @media (max-width: var.$breakpoint-desktop) {
+    animation-duration: 5s;
+  }
+
+  @media (max-width: var.$breakpoint-mobile) {
+    animation-duration: 3s;
+  }
+
+  img {
+    width: 6rem;
+    height: auto;
+  }
+}
+
+@keyframes runRight {
+  0% {
+    left: -16%;
+  }
+
+  100% {
+    left: 110%;
+  }
+}

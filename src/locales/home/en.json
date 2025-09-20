@@ -1,7 +1,7 @@
 {
   "title": "Hi, I’m Mel!",
   "description": "This is my personal project, a Pokédex where I organize Pokémon data while showcasing my skills in React, Next.js, and Sass.",
-  "linkCatch": "Catch Them All!",
+  "linkCatch": "Let's start the adventure!",
   "linkCatchLabel": "Go to Pokémon list",
   "checkCode": "Check out the code:",
   "github": "GitHub",

@@ -1,0 +1,12 @@
+{
+  "title": "Antes de iniciarmos nossa jornada Pokémon, temos alguns avisos importantes:",
+  "text": [
+    "Este projeto foi desenvolvido apenas para fins <b>educacionais e de estudo,</b> como parte do meu portfólio pessoal. <b>Não possui nenhum objetivo comercial ou lucrativo.</b>",
+    "Todas as informações, imagens e nomes de Pokémon foram obtidos da <b>PokéAPI</b> e de outros materiais oficiais da franquia Pokémon. Esses conteúdos são propriedade de <b>Nintendo, Creatures Inc. e GAME FREAK inc..</b>",
+    "Alguns GIFs animados utilizados neste projeto foram obtidos do <b>Tenor</b>. Todos os direitos sobre esses GIFs pertencem aos seus respectivos criadores.",
+    "Este projeto é uma interpretação pessoal, e não representa, de forma alguma, um produto oficial da Pokémon Company ou de qualquer uma das empresas citadas.",
+    "Agradecemos por visitar este projeto e esperamos que você aproveite a experiência de explorar o universo Pokémon!"
+  ],
+  "goToCreditsButton": "Ir para a página de créditos",
+  "goToPokemonListButton": "Vamos começar a aventura!"
+}
