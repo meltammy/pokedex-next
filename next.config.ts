@@ -6,13 +6,24 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(process.cwd(), "src")],
   },
   images: {
-    domains: ["tenor.com", "media.tenor.com"],
     remotePatterns: [
       {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
         port: "",
         pathname: "/PokeAPI/sprites/**",
+      },
+      {
+        protocol: "https",
+        hostname: "tenor.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "media.tenor.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
