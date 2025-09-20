@@ -1,0 +1,17 @@
+{
+  "title": "Créditos",
+  "dataSourcesTitle": "Fontes de Dados",
+  "dataSourcesText": "Todos os dados de Pokémon (nomes, imagens, tipos, etc.) são fornecidos pela",
+  "imagesTitle": "Imagens e GIFs",
+  "imagesText": "Alguns GIFs foram obtidos no",
+  "imagesLinkLabel": "Tenor",
+  "imagesExampleLabel": "Pikachu Running",
+  "legalTitle": "Aviso Legal",
+  "legalText": "Pokémon e seus personagens são propriedade da Nintendo, Game Freak e The Pokémon Company. Este é um projeto de fã, criado apenas para fins de estudo e aprendizado, sem objetivo comercial ou fins lucrativos.",
+  "thanksTitle": "Agradecimentos",
+  "thanksText": "Agradecimentos especiais à comunidade de desenvolvedores e fãs que tornam possível o compartilhamento de recursos e APIs abertas.",
+  "devTitle": "Desenvolvimento",
+  "devText": "Projeto desenvolvido por Melissa Tammy como parte do meu portfólio frontend. Código disponível no",
+  "techTitle": "Tecnologias Utilizadas",
+  "techList": ["Next.js", "React", "TypeScript", "Apollo Client + GraphQL"]
+}
