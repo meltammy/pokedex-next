@@ -11,6 +11,7 @@ import { parseLocale } from "@/lib/utils/parseLocale";
 import { Locale } from "@/types/locale";
 import { homeDictionaries } from "@/locales/home";
 import { PokeballButton } from "./components/PokeballButton";
+import { Link } from "@/components/Link";
 
 interface HomeViewProps {
   locale?: string;
@@ -39,13 +40,15 @@ export function HomeView({ locale = "en" }: HomeViewProps) {
         <h1>{dictionary.title}</h1>
         <p>{dictionary.description}</p>
 
-        <a href={Routes.POKEMONS} aria-label={dictionary.linkCatchLabel}>
+        <Link href={Routes.POKEMONS} aria-label={dictionary.linkCatchLabel}>
           {dictionary.linkCatch}
-        </a>
+        </Link>
 
         <section aria-labelledby="check-code">
           <h3 id="check-code">{dictionary.checkCode}</h3>
-          <a
+          <Link
+            isExternalHref
+            variant="link-primary"
             href={ExternalLinks.GITHUB_REPOSITORY}
             aria-label={dictionary.githubAriaLabel}
             target="_blank"
@@ -53,7 +56,7 @@ export function HomeView({ locale = "en" }: HomeViewProps) {
           >
             <GitHubIcon role="img" aria-hidden="true" />
             <span>{dictionary.github}</span>
-          </a>
+          </Link>
         </section>
 
         <DevelopedBy locale={currentLocale} />
