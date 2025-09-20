@@ -1,11 +1,11 @@
 import Image from "next/image";
-import styles from "./PikachuLoading.module.scss";
+import styles from "./PikachuRunning.module.scss";
 
 type Props = {
   enableAnimation?: boolean;
 };
 
-export function PikachuLoading({ enableAnimation = true }: Props) {
+export function PikachuRunning({ enableAnimation = true }: Props) {
   return (
     <div
       className={

@@ -1,6 +1,6 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 
-import { PikachuLoading } from "../PikachuLoading";
+import { PikachuRunning } from "../PikachuRunning";
 import { observerInfiniteScroll } from "./observerInfiniteScroll";
 import { ScrollToTopButton } from "../ScrollToTopButton";
 
@@ -14,7 +14,7 @@ type InfiniteScrollProps = {
   loaderClassName?: string;
 };
 
-const DefaultLoader = <PikachuLoading enableAnimation={false} />;
+const DefaultLoader = <PikachuRunning enableAnimation={false} />;
 
 export function InfiniteScroll({
   children,
