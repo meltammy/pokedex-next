@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { Montserrat } from "next/font/google";
 import "../../styles/globals.scss";
+import { ApolloWrapper } from "@/lib/graphql/ApolloWrapper";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -16,28 +17,28 @@ export const metadata = {
 };
 
 const locales = ["en", "pt-BR"] as const;
+type Locale = (typeof locales)[number];
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return [{ locale: "en" }, { locale: "pt-BR" }];
 }
 
-export default async function Layout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: "en" | "pt-BR" }>;
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  if (!locales.includes(locale)) {
+  if (!locales.includes(locale as Locale)) {
     notFound();
   }
 
   return (
     <html lang={locale}>
       <body className={`${montserrat.className} ${montserrat.variable}`}>
-        {children}
+        <ApolloWrapper>{children}</ApolloWrapper>
       </body>
     </html>
   );
