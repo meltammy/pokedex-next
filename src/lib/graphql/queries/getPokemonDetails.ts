@@ -1,6 +1,5 @@
 import { PokemonDetailResponse } from "@/types/pokemonDetail";
 import { gql } from "@apollo/client";
-import { client } from "../apolloClient";
 import { useQuery } from "@apollo/client/react";
 
 export const GET_POKEMON_DETAIL = gql`
