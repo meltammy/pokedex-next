@@ -44,12 +44,13 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
 
   return (
     <main className={styles.mainContainer}>
-      <section>
-        <InfiniteScroll
-          fetchMore={handleFetchMore}
-          hasMore={hasMore}
-          initialPage={0}
-        >
+      <InfiniteScroll
+        fetchMore={handleFetchMore}
+        hasMore={hasMore}
+        initialPage={0}
+        loaderClassName={styles.loader}
+      >
+        <section>
           {pokemons.map((item) => (
             <PokemonCard
               key={`${item.id}-${item.name}`}
@@ -63,8 +64,8 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
               locale={currentLocale}
             />
           ))}
-        </InfiniteScroll>
-      </section>
+        </section>
+      </InfiniteScroll>
     </main>
   );
 }

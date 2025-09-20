@@ -1,7 +1,7 @@
 @use "@/styles/variables" as var;
 
 .mainContainer {
-  padding: 1rem;
+  padding-top: 1rem;
 
   section {
     display: grid;
@@ -25,4 +25,8 @@
       max-width: 100%;
     }
   }
+}
+
+.loader {
+  margin-top: 2rem;
 }

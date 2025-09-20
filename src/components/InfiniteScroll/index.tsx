@@ -11,6 +11,7 @@ type InfiniteScrollProps = {
   loader?: ReactNode;
   initialPage: number;
   hidden?: boolean;
+  loaderClassName?: string;
 };
 
 const DefaultLoader = <PikachuLoading enableAnimation={false} />;
@@ -22,6 +23,7 @@ export function InfiniteScroll({
   fetchMore,
   initialPage = 0,
   hidden = false,
+  loaderClassName,
 }: InfiniteScrollProps) {
   const ref = useRef(null);
   const [page, setPage] = useState(initialPage);
@@ -40,7 +42,11 @@ export function InfiniteScroll({
   return (
     <>
       {children}
-      {hasMore && <div ref={ref}>{loader}</div>}
+      {hasMore && (
+        <div ref={ref} className={loaderClassName}>
+          {loader}
+        </div>
+      )}
       <ScrollToTopButton />
     </>
   );
