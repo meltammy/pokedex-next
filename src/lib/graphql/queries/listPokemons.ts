@@ -23,6 +23,8 @@ const query = gql`
 
 type Variables = { limit: number; offset: number; cacheType: string };
 
+export const DEFAULT_POKEMONS_LIMIT = 60;
+
 export const usePokemonList = (
   options: useQuery.Options<PokemonResponse, Variables>
 ) => useQuery<PokemonResponse, Variables>(query, options);

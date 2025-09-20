@@ -5,7 +5,10 @@ import styles from "./PokemonList.module.scss";
 import { Locale } from "@/types/locale";
 import { parseLocale } from "@/lib/utils/parseLocale";
 import { Pokemon } from "@/types/pokemon";
-import { usePokemonList } from "@/lib/graphql/queries/listPokemons";
+import {
+  DEFAULT_POKEMONS_LIMIT,
+  usePokemonList,
+} from "@/lib/graphql/queries/listPokemons";
 import { InfiniteScroll } from "@/components/InfiniteScroll";
 import { useEffect, useState } from "react";
 
@@ -14,8 +17,6 @@ type Props = {
   locale: string;
 };
 
-const firstLimit = 20;
-
 export function PokemonListView({ locale = "en", initialPokemons }: Props) {
   const currentLocale: Locale = parseLocale(locale);
 
@@ -23,7 +24,7 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
 
   const { data, fetchMore, loading } = usePokemonList({
     variables: {
-      limit: firstLimit,
+      limit: DEFAULT_POKEMONS_LIMIT,
       offset: 0,
       cacheType: "allPokemons",
     },
@@ -35,11 +36,11 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
   function handleFetchMore() {
     if (loading) return;
 
-    fetchMore({ variables: { offset: pokemons.length, limit: 20 } }).then(
-      ({ data }) => {
-        setHasMore(Boolean(data?.pokemon.length));
-      }
-    );
+    fetchMore({
+      variables: { offset: pokemons.length, limit: DEFAULT_POKEMONS_LIMIT },
+    }).then(({ data }) => {
+      setHasMore(Boolean(data?.pokemon.length));
+    });
   }
 
   return (

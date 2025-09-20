@@ -1,10 +1,13 @@
 import { withLocaleAndParams } from "@/Layouts/withLocaleAndParams";
-import { fetchPokemonList } from "@/lib/graphql/queries/listPokemons";
+import {
+  DEFAULT_POKEMONS_LIMIT,
+  fetchPokemonList,
+} from "@/lib/graphql/queries/listPokemons";
 import { PokemonListView } from "@/views/PokemonList";
 
 export default withLocaleAndParams(async function PokemonListPage({ locale }) {
   const pokemons = await fetchPokemonList({
-    limit: 20,
+    limit: DEFAULT_POKEMONS_LIMIT,
     offset: 0,
     cacheType: "allPokemons",
   });
