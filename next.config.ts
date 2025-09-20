@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     includePaths: [path.join(process.cwd(), "src")],
   },
   images: {
-    domains: ["tenor.com"],
+    domains: ["tenor.com", "media.tenor.com"],
     remotePatterns: [
       {
         protocol: "https",
