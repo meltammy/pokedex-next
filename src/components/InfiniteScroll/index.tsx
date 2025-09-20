@@ -14,7 +14,7 @@ type InfiniteScrollProps = {
   loaderClassName?: string;
 };
 
-const DefaultLoader = <PikachuRunning enableAnimation={false} />;
+const DefaultLoader = <PikachuRunning showBoxShadow={false} />;
 
 export function InfiniteScroll({
   children,

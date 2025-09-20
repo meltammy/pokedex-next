@@ -1,16 +1,12 @@
-.animationContainer {
+.container {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
   flex-direction: column;
-
-  > span {
-    left: 0;
-  }
 }
 
-.staticContainer {
+.boxShadowContainer {
   width: 100%;
   display: flex;
   justify-content: center;
