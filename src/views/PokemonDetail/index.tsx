@@ -37,7 +37,6 @@ export function PokemonDetailView({ id, locale = "en" }: Props) {
     pokemonsprites[0].sprites.other["official-artwork"].front_default;
 
   const bgColor = getColorsByPokemonType(colorType[0]).backgroundColor;
-  console.log(bgColor);
 
   const stats = pokemonstats.map((item) => ({
     [item.stat.name]: item.base_stat,
