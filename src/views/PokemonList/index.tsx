@@ -10,7 +10,8 @@ import {
   usePokemonList,
 } from "@/lib/graphql/queries/listPokemons";
 import { InfiniteScroll } from "@/components/InfiniteScroll";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { Container } from "@/components/Container";
 
 type Props = {
   initialPokemons: Pokemon[];
@@ -44,7 +45,7 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
   }
 
   return (
-    <main className={styles.mainContainer}>
+    <Container className={styles.mainContainer}>
       <InfiniteScroll
         fetchMore={handleFetchMore}
         hasMore={hasMore}
@@ -67,6 +68,6 @@ export function PokemonListView({ locale = "en", initialPokemons }: Props) {
           ))}
         </section>
       </InfiniteScroll>
-    </main>
+    </Container>
   );
 }

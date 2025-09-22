@@ -1,0 +1,22 @@
+@use "@/styles/variables" as var;
+
+.container {
+  max-width: 876px;
+  margin: auto;
+
+  @media (max-width: var.$breakpoint-desktop) {
+    max-width: 650px;
+  }
+
+  @media (max-width: var.$breakpoint-tablet) {
+    max-width: 432px;
+  }
+
+  @media (max-width: var.$breakpoint-mobile) {
+    max-width: 100%;
+  }
+}
+
+.loader {
+  margin-top: 2rem;
+}
