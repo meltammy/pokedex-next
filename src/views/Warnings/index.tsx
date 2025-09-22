@@ -25,8 +25,12 @@ export function WarningsView({ locale = "en" }: HomeViewProps) {
           ))}
         </div>
         <div>
-          <Link href={Routes.CREDITS}>{dictionary.goToCreditsButton}</Link>
-          <Link href={Routes.POKEMONS}>{dictionary.goToPokemonListButton}</Link>
+          <Link href={Routes.CREDITS} locale={locale}>
+            {dictionary.goToCreditsButton}
+          </Link>
+          <Link href={Routes.POKEMONS} locale={locale}>
+            {dictionary.goToPokemonListButton}
+          </Link>
         </div>
       </section>
       <PikachuRunning className={styles.pikachuRunning} />
