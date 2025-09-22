@@ -12,6 +12,8 @@ import { ProgressBar } from "@/components/ProgressBar";
 import { useGetPokemonDetail } from "@/lib/graphql/queries/getPokemonDetails";
 import { CSSProperties } from "react";
 import { parseLocale } from "@/lib/utils/parseLocale";
+import { pokemonDetailDictionaries } from "@/locales/pokemonDetail";
+import OutlinedText from "@/components/OutlinedText";
 
 export function formatId(id: number) {
   return `${id}`.padStart(3, "0");
@@ -25,6 +27,9 @@ type Props = {
 export function PokemonDetailView({ id, locale = "en" }: Props) {
   const { data } = useGetPokemonDetail(id);
   const currentLocale = parseLocale(locale);
+
+  const dictionary =
+    pokemonDetailDictionaries[currentLocale] || pokemonDetailDictionaries.en;
 
   if (!data) return;
   const { pokemontypes, name, pokemonsprites, pokemonstats, pokemonabilities } =
@@ -51,7 +56,7 @@ export function PokemonDetailView({ id, locale = "en" }: Props) {
     >
       <section>
         <PokemonName name={name} />
-        <div className={styles.id}>{formatId(id)}</div>
+        <OutlinedText text={formatId(id)} className={styles.pokemonId} />
         <LikeButton />
 
         <div className={styles.typesContainer}>
@@ -77,16 +82,20 @@ export function PokemonDetailView({ id, locale = "en" }: Props) {
         <div className={styles.dataContainer}>
           <section>
             <div>
-              <h3>Stats</h3>
+              <h3>{dictionary.stats}</h3>
               {stats.map((item) =>
                 Object.entries(item).map(([label, progress]) => (
-                  <ProgressBar key={label} progress={progress} label={label} />
+                  <ProgressBar
+                    key={label}
+                    progress={progress}
+                    label={dictionary[label as keyof typeof dictionary]}
+                  />
                 ))
               )}
             </div>
 
             <div>
-              <h3>Abilities</h3>
+              <h3>{dictionary.abilities}</h3>
               <span>{abilities.join(", ")}</span>
             </div>
           </section>
