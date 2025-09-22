@@ -1,6 +1,11 @@
+@use "@/styles/variables" as var;
+
 .container {
   background: linear-gradient(var(--bg-color) 0%, transparent 68%) !important;
   box-shadow: inset 0px 12px 11px -11px #00000042;
+  max-height: calc(100dvh - var.$navbar-height-desktop);
+  overflow: hidden;
+
   > section {
     max-width: 1008px;
     margin: auto;
@@ -31,7 +36,7 @@
     }
   }
 
-  @media (min-width: 1080px) {
+  @media (min-width: var.$breakpoint-desktop) {
     background: linear-gradient(var(--bg-color) 0%, transparent 95%) !important;
     display: flex;
     justify-content: center;
@@ -54,6 +59,10 @@
       }
     }
   }
+
+  @media (max-width: var.$breakpoint-mobile) {
+    max-height: calc(100dvh - var.$navbar-height-mobile);
+  }
 }
 
 .imageContainer {
@@ -63,7 +72,7 @@
   margin: auto;
   z-index: 1;
 
-  @media (min-width: 1080px) {
+  @media (min-width: var.$breakpoint-desktop) {
     width: 15rem;
   }
 }
@@ -74,7 +83,7 @@
   position: fixed;
   top: 16rem;
   width: 100%;
-  max-width: 1080px;
+  max-width: var.$breakpoint-desktop;
   z-index: 0;
   border-top-right-radius: 2rem;
   border-top-left-radius: 2rem;
@@ -116,7 +125,7 @@
     }
   }
 
-  @media (min-width: 1080px) {
+  @media (min-width: var.$breakpoint-desktop) {
     min-width: 22rem;
     position: initial;
     border-radius: 2rem;
@@ -148,7 +157,7 @@
     margin-right: 0.5rem;
   }
 
-  @media (min-width: 1080px) {
+  @media (min-width: var.$breakpoint-desktop) {
     position: initial;
   }
 }
@@ -161,7 +170,7 @@
   right: 1rem;
   height: 5rem;
 
-  @media (min-width: 1080px) {
+  @media (min-width: var.$breakpoint-desktop) {
     position: initial;
     align-self: flex-end;
     width: 12rem;
