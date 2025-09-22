@@ -1,16 +1,20 @@
 "use client";
 
+import { useState } from "react";
+
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PokeballIcon } from "../Icons/Pokeball";
-import Link from "next/link";
 import { Routes } from "@/routes";
 import { NavLink } from "./components/NavLink";
-import styles from "./Navbar.module.scss";
-import { Locale } from "@/types/locale";
 import locales from "./locales/navbar.json";
 import { parseLocale } from "@/lib/utils/parseLocale";
 
+import styles from "./Navbar.module.scss";
+
 export function Navbar({ locale = "en" }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   const pathname = usePathname();
   const currentLocale = parseLocale(locale);
   const dictionary = locales[currentLocale] || locales.en;
@@ -23,12 +27,26 @@ export function Navbar({ locale = "en" }) {
   ];
 
   return (
-    <nav className={styles.Navbar}>
+    <nav className={styles.Navbar} data-is-open={isOpen}>
       <div className={styles.container}>
         <Link href={`/${locale}` + Routes.POKEMONS}>
           <PokeballIcon />
         </Link>
-        <ul>
+        <button
+          className={styles.hamburger}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle navigation"
+          data-is-open={isOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <ul
+          className={`${styles.links} ${isOpen ? styles.open : ""}`}
+          data-is-open={isOpen}
+        >
           {navLinks.map((item) => (
             <NavLink
               key={item.href}

@@ -1,3 +1,5 @@
+@use "@/styles/variables" as var;
+
 .Navbar {
   box-shadow: 0px 0px 6px #0000002e;
   height: 3rem;
@@ -5,6 +7,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: var.$breakpoint-mobile) {
+    align-items: flex-start;
+    height: 60px;
+  }
+
+  &[data-is-open="true"] {
+    height: 13rem;
+  }
 }
 
 .container {
@@ -17,5 +30,72 @@
     list-style: none;
     display: flex;
     padding-left: 1rem;
+  }
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 25px;
+  height: 20px;
+  background: none;
+  border: none;
+  position: relative;
+  margin-left: auto;
+
+  span {
+    transition: 0.5s;
+    width: 100%;
+    display: block;
+    border: 2px black solid;
+    border-radius: 2rem;
+  }
+
+  @media (max-width: var.$breakpoint-mobile) {
+    display: flex;
+  }
+
+  &[data-is-open="true"] {
+    span {
+      position: absolute;
+      bottom: 50%;
+    }
+
+    > span:nth-of-type(2) {
+      opacity: 0;
+    }
+
+    > span:nth-of-type(1) {
+      transform: rotate3d(0, 0, 1, -45deg);
+    }
+
+    > span:nth-of-type(3) {
+      transform: rotate3d(0, 0, 1, 45deg);
+    }
+  }
+}
+
+.links {
+  display: flex;
+
+  @media (max-width: var.$breakpoint-mobile) {
+    position: absolute;
+    top: 4rem;
+    left: 0;
+
+    flex-direction: column;
+    gap: 0.5rem;
+
+    font-size: 1.25rem;
+    opacity: 0;
+
+    li {
+      margin: 0;
+    }
+
+    &[data-is-open="true"] {
+      opacity: 1;
+    }
   }
 }
