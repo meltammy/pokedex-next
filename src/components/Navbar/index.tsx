@@ -18,6 +18,8 @@ export function Navbar({ locale = "en" }) {
   const navLinks = [
     { href: `/${locale}` + Routes.POKEMONS, children: dictionary.pokemons },
     { href: `/${locale}` + Routes.FAVORITES, children: dictionary.favorites },
+    { href: `/${locale}` + Routes.WARNINGS, children: dictionary.warnings },
+    { href: `/${locale}` + Routes.CREDITS, children: dictionary.credits },
   ];
 
   return (

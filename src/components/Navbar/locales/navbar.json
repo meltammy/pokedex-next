@@ -1,10 +1,14 @@
 {
   "en": {
     "pokemons": "Pokemons",
-    "favorites": "Favorites"
+    "favorites": "Favorites",
+    "warnings": "Warnings",
+    "credits": "Credits"
   },
   "pt-BR": {
     "pokemons": "Pokemons",
-    "favorites": "Favoritos"
+    "favorites": "Favoritos",
+    "warnings": "Avisos",
+    "credits": "Créditos"
   }
 }
