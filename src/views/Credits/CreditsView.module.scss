@@ -9,4 +9,8 @@
     font-weight: 400;
     color: var.$red;
   }
+
+  @media (max-width: var.$breakpoint-tablet) {
+    padding: 1rem;
+  }
 }
