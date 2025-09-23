@@ -1,16 +1,19 @@
 @use "@/styles/variables" as var;
 
-.container {
+.mainContainer {
   margin-top: 2rem;
-  display: grid;
-  gap: 2rem;
 
   a {
     font-weight: 400;
     color: var.$red;
   }
 
-  @media (max-width: var.$breakpoint-tablet) {
+  @media (max-width: var.$breakpoint-mobile) {
     padding: 1rem;
   }
+}
+
+.container {
+  display: grid;
+  gap: 2rem;
 }

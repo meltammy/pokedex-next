@@ -10,8 +10,8 @@ type Props = {
 
 export function Container({ children, className }: Props) {
   return (
-    <main className={formatClassName([styles.container, className])}>
+    <div className={formatClassName([styles.container, className])}>
       {children}
-    </main>
+    </div>
   );
 }
